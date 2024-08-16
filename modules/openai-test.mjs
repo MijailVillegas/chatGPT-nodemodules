@@ -12,7 +12,9 @@ async function main() {
       "https://api.openai.com/v1/chat/completions", // URL de la API de OpenAI para completado de chat
       {
         model: "gpt-4o-mini", // Modelo de lenguaje a utilizar
-        messages: [{ role: "system", content: "Cuéntame un chiste de informática" }], // Mensaje de sistema para indicar el propósito del chat
+        messages: [
+          { role: "system", content: "Cuéntame un chiste de informática" },
+        ], // Mensaje de sistema para indicar el propósito del chat
         temperature: 0.9, // Parámetro de temperatura para controlar la creatividad de la respuesta
         max_tokens: 100, // Número máximo de tokens a generar
       },
