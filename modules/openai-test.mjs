@@ -38,4 +38,3 @@ async function main() {
 main();
 
 // Este código utiliza el módulo Axios para hacer solicitudes HTTP y generar un chiste de informática utilizando la API de OpenAI.
-
