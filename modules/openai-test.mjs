@@ -15,7 +15,7 @@ async function main() {
         messages: [
           { role: "system", content: "Cuéntame un chiste de informática" },
         ], // Mensaje de sistema para indicar el propósito del chat
-        temperature: 0.9, // Parámetro de temperatura para controlar la creatividad de la respuesta
+        temperature: 0.9, // Parámetro de temperatura entre 0 y 2, de determinista a creativo
         max_tokens: 100, // Número máximo de tokens a generar
       },
       {
