@@ -29,7 +29,7 @@ async function main() {
     const completion = response.data; // Respuesta de la API
     console.log(completion); // Imprimir la respuesta completa
     const messageContent = completion.choices[0].message.content; // Contenido del primer mensaje de la respuesta
-    console.log(messageContent); // Imprimir el contenido del primer mensaje
+    console.log(messageChoices); // Imprimir el contenido del primer mensaje
   } catch (error) {
     console.error("Error al llamar a la API de OpenAI:", error); // Imprimir un mensaje de error si ocurre alguna excepción
   }
