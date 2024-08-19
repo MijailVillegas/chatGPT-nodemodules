@@ -1,5 +1,8 @@
+import { openaiResponse } from "../modules/model/ResponseModel.mjs";
+import { response_example } from "../response-examples/chat-openai-response.example.mjs";
+
 // Medir el tiempo de creación de la instancia
-console.time("Creation Time");
+let startTime = performance.now();
 const response = openaiResponse.new(response_example);
 /* const response = new openaiResponse;
 response.id = response_example.id;
@@ -9,14 +12,18 @@ response.model = response_example.model;
 response.choices = response_example.choices;
 response.usage = response_example.usage;
 response.system_fingerprint = response_example.system_fingerprint; */
-console.timeEnd("Creation Time");
+let endTime = performance.now();
+console.log(`Time to create object: ${ endTime - startTime}ms`);
 
 // Medir el tiempo de ejecución de `toString()`
-console.time("ToString Time");
-console.log(response.toString());
-console.timeEnd("ToString Time");
+
+startTime = performance.now();
+console.log(response.toJSONstring());
+endTime = performance.now();
+console.log(`Time to print object: ${ endTime - startTime}ms`);
 
 // Medir el tiempo de ejecución de `destroy()`
-console.time("Destroy Time");
+startTime = performance.now();
 response.destroy();
-console.timeEnd("Destroy Time");
+endTime = performance.now();
+console.log(`Time to destroy object: ${ endTime - startTime}ms`);

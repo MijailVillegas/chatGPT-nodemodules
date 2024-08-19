@@ -4,9 +4,10 @@ const apiKey = process.env.OPENAI_API_KEY; // Obtener la clave de API de OpenAI 
 
 /**
  * Esta función principal utiliza Axios para hacer una solicitud POST a la API de OpenAI 
- * y obtener un chiste de informática.
  */
 async function main() {
+  let startTime = performance.now();
+  let startMemory = process.memoryUsage().heapUsed;
   try {
     const response = await axios.post(
       "https://api.openai.com/v1/chat/completions", // URL de la API de OpenAI para completado de chat
@@ -25,11 +26,13 @@ async function main() {
         },
       }
     );
-
+    console.log(`Tiempo de ejecución: ${performance.now() - startTime} ms`); // Imprimir el tiempo de ejecución del código
+    console.log(`Memoria usada: ${(process.memoryUsage().heapUsed - startMemory) / 1024 / 1024} MB`); // Imprimir la memoria usada
+    console.log(`Uso de memmoria por segundo: ${(process.memoryUsage().heapUsed - startMemory) / 1024 / 1024 / (performance.now() - startTime)} MB/s`); // Imprimir la memoria usada por segundo
     const completion = response.data; // Respuesta de la API
     console.log(completion); // Imprimir la respuesta completa
     const messageContent = completion.choices[0].message.content; // Contenido del primer mensaje de la respuesta
-    console.log(messageChoices); // Imprimir el contenido del primer mensaje
+    console.log(messageContent); // Imprimir el contenido del primer mensaje
   } catch (error) {
     console.error("Error al llamar a la API de OpenAI:", error); // Imprimir un mensaje de error si ocurre alguna excepción
   }
