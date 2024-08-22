@@ -24,10 +24,9 @@ export default async function handler(event) {
         },
       }
     );
-    const chatgptReply = response.data.choices[0].message.content;
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: chatgptReply }),
+      body: JSON.stringify({ message: response.data.choices[0].message.content }),
     };
   } catch (error) {
     return {
