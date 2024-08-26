@@ -1,30 +1,34 @@
-import { Configuration, OpenAI } from 'openai';
 import axios from 'axios';
+import { jsonFilter } from './Libraries/Cleaners/jsonExtract.mjs';
 
-export const handler = async(event) => {
-    const configuration = new Configuration({
-        apiKey: process.env.OPENAI_API_KEY,
-    });
-    const openai = new OpenAI(configuration);
-    try{
-        const response = await openai.createChatCompletion({
-            model: "gpt-3.5-turbo",
-            messages: [
-                {"role": "user", "Cuéntame un chiste": event.body}
-            ],
-            max_tokens: 150,
-        });
-        const chatgptReply = response.data.choices[0].message.content;
-        return {
-            statusCode: 200,
-            body: JSON.stringify( {
-                message: chatgptReply
-            })
-        };
-    }catch(error){
-        return {
-            statusCode: 500,
-            body: JSON.stringify(error)
-        };
-    }
-}
+export const handler = async (event) => {
+  try {
+    const response = await axios.post(
+      "https://api.openai.com/v1/chat/completions",
+      {
+        model: "gpt-4o-mini",
+        messages: [{ role: "system", content: `${event.prompt}` }],
+        temperature: 0.9,
+        max_tokens: 8100,
+      },
+      {
+        headers: {
+          Accept: "*/*",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        },
+      }
+    );
+    return {
+      statusCode: 200,
+      body: jsonFilter(response.data.choices[0].message.content),
+    };
+  } catch (error) {
+    const status = error.response ? error.response.status : 500;
+    console.log("error from API", error);
+    return {
+      statusCode: status,
+      body: JSON.stringify({ error: error.message }),
+    };
+  }
+};

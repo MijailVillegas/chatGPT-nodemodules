@@ -1,8 +1,5 @@
 import axios from "axios";
-import { prompt1_PV_optimize } from "../prompts/prompt-openai-PV.optimize.mjs";
-import { promtp3_PM_optimize } from "../prompts/prompt-openai-PM.optimize.mjs";
-import { prompt3_plan_marketing } from "../prompts/prompt-openai-PM.example.mjs";
-import { prompt2_plan_estrategico_impacto } from "../prompts/prompt-openai-PEI.example.mjs";
+
 import { prompt2_PEI_optimized } from "../prompts/prompt-openai-PEI.optimize.mjs";
 import { jsonFilter } from "../modules/Libraries/Cleaners/jsonExtract.mjs";
 
@@ -30,10 +27,9 @@ axios
     const endTime = performance.now();
     const timeSpend = endTime - startTime;
     console.log(`Time to complete: ${timeSpend}ms`);
-    console.log(response.data);
     console.log(jsonFilter(response.data.choices[0].message.content));
   })
   .catch(function (error) {
     console.error(error);
-  });3
+  });
 

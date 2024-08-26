@@ -1,3 +1,3 @@
-export const jsonFilter = (text = "") => {
+export const jsonFilter = (text) => {
      return JSON.parse(text.replace(/```json|```/g, "").trim());
 };
