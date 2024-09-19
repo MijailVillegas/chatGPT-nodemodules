@@ -1,0 +1,25 @@
+export const fine_tuning_check = {
+  object: "fine_tuning.job",
+  id: "ftjob-ev3FzTC9ylOuQXeHR2HOnaT1",
+  model: "gpt-4o-mini-2024-07-18",
+  created_at: 1726504568,
+  finished_at: 1726505185,
+  fine_tuned_model:
+    "ft:gpt-4o-mini-2024-07-18:mijail-villegas:contador-chistes:A899n997",
+  organization_id: "org-PYhtu1i3Z0BJwnuLafaLM9Lz",
+  result_files: ["file-iUqKQk8FmoP3aEphUNSEe9HO"],
+  status: "succeeded",
+  validation_file: null,
+  training_file: "file-9cleHK4SNJi74djI0MUjgDzT",
+  hyperparameters: {
+    n_epochs: 10,
+    batch_size: 1,
+    learning_rate_multiplier: 1.8,
+  },
+  trained_tokens: 5420,
+  error: {},
+  user_provided_suffix: "contador-chistes",
+  seed: 2011375481,
+  estimated_finish: null,
+  integrations: [],
+};
