@@ -1,14 +1,12 @@
-import axios from "axios";
+import gptInstance from "../Axios/axiosDefaultConf.mjs";
 
 export async function CreateThread() {
     try {
-        const response = await axios.post(
-            'https://api.openai.com/v1/threads',
+        const response = await gptInstance.post(
+            'threads',
             '',
             {
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
                     'OpenAI-Beta': 'assistants=v2',
                 }
             }

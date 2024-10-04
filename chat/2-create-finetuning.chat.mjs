@@ -1,18 +1,13 @@
-import axios from "axios";
+import gptInstance from "../Axios/axiosDefaultConf.mjs";
 
 async function CreateFineTuning(fileID) {
+
  try {
-    const response = await axios.post(
-      `https://api.openai.com/v1/fine_tuning/jobs`,
+    const response = await gptInstance.post(
+      `/fine_tuning/jobs`,
       {
         training_file: fileID,
         model: "gpt-4o-mini-2024-07-18",
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-        },
       }
     );
     console.log('FineTuning creado:', response.data);
@@ -24,7 +19,7 @@ async function CreateFineTuning(fileID) {
 }
 
 (async () => {
-    const fileID = "file-Ge799O0WLl2Q2ZUjULJalbGV";
+    const fileID = "file-6AecXLStw7TfyhrupD8J1Q89";
   try {
     const fineTuning = await CreateFineTuning(fileID);
     console.log("FineTuning creado :", fineTuning);

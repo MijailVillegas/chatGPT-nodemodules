@@ -1,6 +1,6 @@
-import axios from "axios";
 import FormData from "form-data";
 import conversation from "../Treainer/training-data.jsonl.mjs";
+import gptInstance from "../Axios/axiosDefaultConf.mjs";
 const convertToJSONL = (data) => {
   return data.map((item) => JSON.stringify(item)).join("\n");
 };
@@ -9,23 +9,17 @@ async function UploadJSONLFile(conversation) {
   const jsonData = convertToJSONL(conversation);
   /* console.log("Type", typeof(jsonData),"JSONL",jsonData); */
   const buffer = Buffer.from(jsonData, "utf-8");
-  console.log("Buffer:", buffer);
+  console.log("APIKEY:", process.env.OPENAI_API_KEY);
   const formData = new FormData();
   formData.append("purpose", "fine-tune");
-
   formData.append("file", buffer, "conversation.jsonl");
-
+  
   try {
-    const response = await axios.post(
-      "https://api.openai.com/v1/files",
-      formData,
-      {
+      const response = await gptInstance.post("files", formData, {
         headers: {
           ...formData.getHeaders(),
-          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
         },
-      }
-    );
+      });
     /* console.log("Archivo subido", response.data); */
     return response.data;
   } catch (error) {

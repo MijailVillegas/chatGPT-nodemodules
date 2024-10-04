@@ -1,17 +1,15 @@
-import axios from "axios";
+import gptInstance from "../Axios/axiosDefaultConf.mjs";
 
-export async function sendMsgToThread(threadID, content) {
+export async function sendMsgToThread(threadID, message) {
     try {
-        const response = await axios.post(
-          `https://api.openai.com/v1/threads/${threadID}/messages`,
+        const response = await gptInstance.post(
+          `/threads/${threadID}/messages`,
           {
             role: "user",
-            content: content,
+            content: message,
           },
           {
             headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
               "OpenAI-Beta": "assistants=v2",
             },
           }
@@ -27,7 +25,8 @@ export async function sendMsgToThread(threadID, content) {
 try {
     const threadID = "thread_P5zMu6l0ZuWQTji3zES75B45";
     const content = "Hola, cuéntame un chiste de pájaros";
-    const bot = await sendMsgToThread(threadID, content);
+    const runsID = "run_g1XdYgjuw089dtSUUHFmzmfI";
+    const bot = await sendMsgToThread(threadID, runsID, content);
     console.log(bot);
     console.log(bot.content);
 } catch (error) {

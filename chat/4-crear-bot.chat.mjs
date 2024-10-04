@@ -1,21 +1,19 @@
-import axios from "axios";
 import { botInstructions } from "../Treainer/bot-instructions.mjs";
+import gptInstance from "../Axios/axiosDefaultConf.mjs";
 
-async function CreateChatBot(modelID) {
+async function CreateChatBot(name, description, instructions, modelID) {
   try {
-    const response = await axios.post(
-      "https://api.openai.com/v1/assistants",
+    const response = await gptInstance.post(
+      "/assistants",
       {
-        name: "Stwart Joker",
-        description: "Stwart Joker es un contador de chistes tontos.",
-        instructions: botInstructions.instructions, // Asegúrate de que esto esté correctamente definido
+        name: name,
+        description: description,
+        instructions: instructions,
         temperature: 0.8,
         model: modelID,
       },
       {
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
           "OpenAI-Beta": "assistants=v2",
         },
       }
@@ -27,10 +25,16 @@ async function CreateChatBot(modelID) {
 }
 
 (async () => {
-  const modelID =
-    "ft:gpt-4o-mini-2024-07-18:mijail-villegas:contador-chistes:A899n997";
+  const name = "Stwart Joker";
+  const description = "Stwart Joker es un contador de chistes tontos.";
+  const modelID = "ft:gpt-4o-mini-2024-07-18:emprendelatamapi::AEMff2Gf";
   try {
-    const bot = await CreateChatBot(modelID);
+    const bot = await CreateChatBot(
+      name,
+      description,
+      botInstructions.instructions,
+      modelID
+    );
     console.log("Bot creado:", bot);
   } catch (error) {
     console.error("Error creando Bot:", error);
