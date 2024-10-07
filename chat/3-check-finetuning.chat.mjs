@@ -1,23 +1,21 @@
 import gptInstance from "../Axios/axiosDefaultConf.mjs";
 
-async function checkFineTuning(fineTunedID) {
+export async function checkFineTuning(fineTunedID) {
   try {
     const response = await gptInstance.get(
-      `/fine_tuning/jobs/${fineTunedID}`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-        },
-      }
+      `/fine_tuning/jobs/${fineTunedID}`
     );
     return response.data;
   } catch (error) {
-    throw new Error("Error al verificar el FineTuning");
+     if (error.response && error.response.data) {
+      return error.response.data;
+    }
+    throw error;
   }
 }
-
+/* 
 (async () => {
-  const fineTunedJobID = "ftjob-FjIGD5R2BgGW3dMhGHPTwWEF";
+  const fineTunedJobID = "";
   try {
     const fineTuning = await checkFineTuning(fineTunedJobID);
     console.log("FineTuning verificado:", fineTuning);
@@ -27,3 +25,4 @@ async function checkFineTuning(fineTunedID) {
     console.error("Error verificando FineTuning:", error);
   }
 })();
+ */

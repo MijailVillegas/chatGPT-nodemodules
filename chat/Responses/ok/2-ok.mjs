@@ -1,0 +1,22 @@
+const tunningJob = {
+  object: "fine_tuning.job",
+  id: "ftjob-GsUwDIvF6BD4V86kMS3LtGNs",
+  model: "gpt-4o-mini-2024-07-18",
+  created_at: 1728327292,
+  finished_at: null,
+  fine_tuned_model: null,
+  organization_id: "org-WSusraRZBGDyeBhauHmNwMOP",
+  result_files: [],
+  status: "validating_files",
+  validation_file: null,
+  training_file: "file-eDs8jqfdTaEXdz9IHEDISGID",
+  hyperparameters: {
+    n_epochs: "auto",
+    batch_size: "auto",
+  },
+  trained_tokens: null,
+  error: {},
+  user_provided_suffix: null,
+  estimated_finish: null,
+  integrations: [],
+};

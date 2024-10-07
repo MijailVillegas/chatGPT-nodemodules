@@ -1,15 +1,13 @@
 import FormData from "form-data";
 import conversation from "../Treainer/training-data.jsonl.mjs";
 import gptInstance from "../Axios/axiosDefaultConf.mjs";
-const convertToJSONL = (data) => {
+export const convertToJSONL = (data) => {
   return data.map((item) => JSON.stringify(item)).join("\n");
 };
 
-async function UploadJSONLFile(conversation) {
+export async function UploadJSONLFile(conversation) {
   const jsonData = convertToJSONL(conversation);
-  /* console.log("Type", typeof(jsonData),"JSONL",jsonData); */
   const buffer = Buffer.from(jsonData, "utf-8");
-  console.log("APIKEY:", process.env.OPENAI_API_KEY);
   const formData = new FormData();
   formData.append("purpose", "fine-tune");
   formData.append("file", buffer, "conversation.jsonl");
@@ -20,17 +18,15 @@ async function UploadJSONLFile(conversation) {
           ...formData.getHeaders(),
         },
       });
-    /* console.log("Archivo subido", response.data); */
     return response.data;
   } catch (error) {
-    console.error(
-      "Error subiendo archivo:",
-      error.response ? error.response.data : error.message
-    );
+    if (error.response && error.response.data) {
+      return error.response.data;
+    }
     throw error;
   }
 }
-
+/* 
 (async () => {
   try {
     const filedata = await UploadJSONLFile(conversation);
@@ -39,3 +35,4 @@ async function UploadJSONLFile(conversation) {
     console.error("Error subiendo archivo:", error);
   }
 })();
+ */

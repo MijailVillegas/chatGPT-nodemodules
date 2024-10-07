@@ -1,29 +1,27 @@
 import gptInstance from "../Axios/axiosDefaultConf.mjs";
 
-async function CreateFineTuning(fileID) {
-
- try {
-    const response = await gptInstance.post(
-      `/fine_tuning/jobs`,
-      {
-        training_file: fileID,
-        model: "gpt-4o-mini-2024-07-18",
-      }
-    );
-    console.log('FineTuning creado:', response.data);
-    return response.data;
- } catch (error) {
-    console.error( 'Error creando FineTuning',error);
+export async function CreateFineTuning(fileID) {
+  try {
+    const response = await gptInstance.post(`/fine_tuning/jobs`, {
+      training_file: fileID,
+      model: "gpt-4o-mini-2024-07-18",
+    });
+    return response.data; 
+  } catch (error) {
+    if (error.response && error.response.data) {
+      return error.response.data;
+    }
     throw error;
- }
+  }
 }
-
+/* 
 (async () => {
-    const fileID = "file-6AecXLStw7TfyhrupD8J1Q89";
+  const fileID = "file-eDs8jqfdTaEXdz9IHEDISGID";
   try {
     const fineTuning = await CreateFineTuning(fileID);
-    console.log("FineTuning creado :", fineTuning);
+    console.log("Respuesta de FineTuning:", fineTuning);
   } catch (error) {
-    console.error("Error creando FineTuning:", error);
+    console.error("Error en la creación de FineTuning:", error.message);
   }
 })();
+ */

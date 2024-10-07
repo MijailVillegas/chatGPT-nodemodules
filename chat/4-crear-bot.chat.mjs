@@ -1,7 +1,7 @@
 import { botInstructions } from "../Treainer/bot-instructions.mjs";
 import gptInstance from "../Axios/axiosDefaultConf.mjs";
 
-async function CreateChatBot(name, description, instructions, modelID) {
+export async function CreateChatBot(name, description, instructions, modelID) {
   try {
     const response = await gptInstance.post(
       "/assistants",

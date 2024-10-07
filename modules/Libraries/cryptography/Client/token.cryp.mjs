@@ -1,7 +1,8 @@
+import axios from "axios";
 import crypto from "crypto";
 import fs from "fs";
 /*CLIENTE */
-export const payloadToken = (dataToCrypt) => {
+export const payloadToken = () => {
   // 1. Cargar las claves
   const clientPrivateKey = crypto.createPrivateKey({
     key: fs.readFileSync(
@@ -25,7 +26,6 @@ export const payloadToken = (dataToCrypt) => {
     credentials: credential,
     expirationTime: Date.now() + 10 * 1000,
   });
-
   // 3. Cifrar los datos con la clave pública del Lambda
   function encryptData(data) {
     const encrypted = crypto.publicEncrypt(
@@ -54,11 +54,28 @@ export const payloadToken = (dataToCrypt) => {
 
   // Crear el payload para enviar a la Lambda
   const payload = {
-    token: encryptedToken, // Token cifrado
-    signature: signature, // Firma del token
+      token: encryptedToken, // Token cifrado
+      signature: signature, // Firma del token
   };
 
   //Esto podría ser mediante una llamada HTTP POST
   /* console.log("Payload enviado a la Lambda:", payload); */
   return payload;
 };
+
+(
+  async () => {
+    const payload = payloadToken();
+    const request = await axios.post("http://127.0.0.1:3080/lambda", {
+      body: {
+        event: "check_cripto",
+        payload: {
+          token: payload.token,
+          signature: payload.signature,
+        },
+      },
+    });
+    
+    console.log(request.data);
+  }
+)();

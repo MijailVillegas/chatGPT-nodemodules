@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import fs from "fs";
-import { payloadToken } from "../Client/token.cryp.mjs";
+
 /**LAMBDA*/
 /*   // Simula la recepción del payload desde el cliente
   const payload = {
@@ -8,7 +8,6 @@ import { payloadToken } from "../Client/token.cryp.mjs";
     signature: "firma_recibida",// Clave pública del cliente para verificación
   }; */
 export const payloadDecrypt = (payload) => {
-
   try {
     // 1. Cargar la clave privada de la Lambda protegida con contraseña
     const lambdaPrivateKey = crypto.createPrivateKey({
@@ -34,7 +33,6 @@ export const payloadDecrypt = (payload) => {
     }
 
     const decryptedData = decryptData(payload.token);
-    console.log("Datos desencriptados:", decryptedData);
 
     // 3. Verificar la firma con la clave pública del cliente
     function verifySignature(token, signature, clientPublicKey) {
@@ -70,18 +68,16 @@ export const payloadDecrypt = (payload) => {
       throw new Error("Token expirado, el token no es de confianza.");
     }
     
-    console.log("Firma verificada con éxito, el token es válido");
     return {
-      isValid: true,
-      message: "Token válido y firmado",
+      valid: true,
+      message: "authorized",
     };
   } catch (error) {
-    console.log("Error al verificar la firma:", error.message);
     return {
-      isValid: false,
+      valid: false,
       message: error.message,
     };
   }
 };
 
-payloadDecrypt(payloadToken());
+/* payloadDecrypt(payloadToken()); */
