@@ -63,7 +63,7 @@ export const payloadToken = () => {
   return payload;
 };
 
-(
+/* (
   async () => {
     const payload = payloadToken();
     const request = await axios.post("http://127.0.0.1:3080/lambda", {
@@ -79,3 +79,4 @@ export const payloadToken = () => {
     console.log(request.data);
   }
 )();
+ */

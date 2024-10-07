@@ -1,5 +1,6 @@
 import { payloadToken } from "../modules/Libraries/cryptography/Client/token.cryp.mjs";
 import { payloadDecrypt } from "../modules/Libraries/cryptography/Host/cryptoService.mjs";
+import conversation from "../Treainer/training-data.jsonl.mjs";
 import conversation_incomplete from "../Treainer/training-incomplete-data.jsonl.mjs";
 import { UploadJSONLFile } from "./1-upload-file.chat.mjs";
 import { CreateFineTuning } from "./2-create-finetuning.chat.mjs";
@@ -25,20 +26,21 @@ export async function trainFileJSONL(data) {
     if (tuningResponse.error) {
       throw new Error(tuningResponse.error);
     }
-    console.log("FineTuning creado:", tuningResponse.id);
-
+    console.log("FineTuning creado:", tuningResponse);
+    
     const checkTuning = await checkFineTuning(tuningResponse.id);
     if (checkTuning.error) {
       throw new Error(checkTuning.error);
-    }
+    }    
+   console.log("FineTuning verificado:", checkTuning);
 
-    return {
-      file_id: fileId,
-      model_id: tuningResponse.id,
-      tunning_job_id: checkTuning.id,
-      estimated_finish: checkTuning.estimated_finish,
-      status: checkTuning.status,
-    };
+   const digest = {
+     file_id: fileId,
+     model_id: tuningResponse.id,
+     status: tuningResponse.status,
+   };
+   console.log(digest)
+    return digest;
   } catch (error) {
     if (error.response && error.response.data) {
       return error.response.data;
@@ -47,16 +49,3 @@ export async function trainFileJSONL(data) {
   }
 }
 
-(async () => {
-  try {
-    const data = {
-      event: "train",
-      payload: payloadToken(),
-      body: conversation_incomplete,
-    };
-    const response = await trainFileJSONL(data);
-    console.log(JSON.stringify(response, null, 2));
-  } catch (error) {
-    console.error(error.message);
-  }
-})();

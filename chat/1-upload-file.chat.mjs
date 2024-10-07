@@ -13,11 +13,12 @@ export async function UploadJSONLFile(conversation) {
   formData.append("file", buffer, "conversation.jsonl");
   
   try {
-      const response = await gptInstance.post("files", formData, {
-        headers: {
-          ...formData.getHeaders(),
-        },
-      });
+    const response = await gptInstance.post("files", formData, {
+      headers: {
+        ...formData.getHeaders(),
+      },
+    });
+    console.log(response.data);
     return response.data;
   } catch (error) {
     if (error.response && error.response.data) {

@@ -6,6 +6,7 @@ export async function CreateFineTuning(fileID) {
       training_file: fileID,
       model: "gpt-4o-mini-2024-07-18",
     });
+    console.log(response.data);
     return response.data; 
   } catch (error) {
     if (error.response && error.response.data) {

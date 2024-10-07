@@ -1,22 +1,16 @@
-import axios from "axios";
-import { convertToJSONL } from "../chat/1-upload-file.chat.mjs";
+import { trainFileJSONL } from "../chat/functions.chat.mjs";
 import { payloadToken } from "../modules/Libraries/cryptography/Client/token.cryp.mjs";
-import conversation_incomplete from "../Treainer/training-incomplete-data.jsonl.mjs";
-import gptInstance from "../Axios/axiosDefaultConf.mjs";
+import conversation from "../Treainer/training-data.jsonl.mjs";
 
-(async () => {
+
   try {
     const data = {
       event: "train",
       payload: payloadToken(),
-      body: conversation_incomplete,
+      body: conversation,
     };
-
-    axios.post("/lambda", data);
-
-    console.log(JSON.stringify(data, null, 2));
-    console.log(train);
+    const response = await trainFileJSONL(data);
+    console.log(response);
   } catch (error) {
     console.error(error.message);
   }
-})();

@@ -2,6 +2,7 @@ import gptInstance from "../Axios/axiosDefaultConf.mjs";
 
 export async function checkFineTuning(fineTunedID) {
   try {
+    console.log("Verificando FineTuning: ", fineTunedID);
     const response = await gptInstance.get(
       `/fine_tuning/jobs/${fineTunedID}`
     );
@@ -13,9 +14,9 @@ export async function checkFineTuning(fineTunedID) {
     throw error;
   }
 }
-/* 
-(async () => {
-  const fineTunedJobID = "";
+
+/* (async () => {
+  const fineTunedJobID = "ftjob-2GFiAlyUvOFbfBiEmQzIf6it";
   try {
     const fineTuning = await checkFineTuning(fineTunedJobID);
     console.log("FineTuning verificado:", fineTuning);
