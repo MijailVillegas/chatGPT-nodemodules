@@ -17,11 +17,11 @@ export async function CreateThread() {
     }
 }
 
-(async () => {
+/* (async () => {
     try {
         const thread = await CreateThread();
         console.log("Thread creado:", thread);
     } catch (error) {
         console.error("Error creando Thread:", error);
     }
-})();
+})(); */

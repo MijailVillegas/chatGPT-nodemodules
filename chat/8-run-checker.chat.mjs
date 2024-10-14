@@ -1,9 +1,9 @@
 import gptInstance from "../Axios/axiosDefaultConf.mjs";
 
-export async function sendMsgToThread(threadID, message) {
+export async function retrieveMsgFromRun(threadID, runID) {
   try {
-    const response = await gptInstance.post(
-      `/threads/${threadID}/messages`,
+    const response = await gptInstance.get(
+      `threads/${threadID}/runs/${runID}`,
       {
         role: "user",
         content: message,
@@ -19,7 +19,7 @@ export async function sendMsgToThread(threadID, message) {
     throw new Error(error);
   }
 }
-
+/* 
 (async () => {
   try {
     const threadID = "thread_P5zMu6l0ZuWQTji3zES75B45";
@@ -32,3 +32,4 @@ export async function sendMsgToThread(threadID, message) {
     console.log(error);
   }
 })();
+ */

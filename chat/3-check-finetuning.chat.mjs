@@ -1,6 +1,6 @@
 import gptInstance from "../Axios/axiosDefaultConf.mjs";
 
-export async function checkFineTuning(fineTunedID) {
+export async function checkFineTuningJob(fineTunedID) {
   try {
     console.log("Verificando FineTuning: ", fineTunedID);
     const response = await gptInstance.get(

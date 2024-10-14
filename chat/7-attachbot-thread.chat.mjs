@@ -15,11 +15,14 @@ export async function ChatBotWithThreading(threadID, botID) {
         );
         return response.data;
     } catch (error) {
-        throw new Error(error);
+            if (error.response && error.response.data) {
+              return error.response.data;
+            }
+            throw error;
     }
 }
 
-
+/* 
 (async ()=>{
     try {
         const threadID = "thread_e2DZbs1EdiiHKELJfzkeKdtZ";
@@ -29,4 +32,4 @@ export async function ChatBotWithThreading(threadID, botID) {
     } catch (error) {
         console.log("Error chateando con thread:", error);
     }
-})()
+})() */

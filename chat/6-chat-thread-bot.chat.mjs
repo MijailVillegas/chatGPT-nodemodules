@@ -16,11 +16,14 @@ export async function sendMsgToThread(threadID, message) {
         );
         return response.data;
     } catch (error) {
-        throw new Error(error);
+       if (error.response && error.response.data) {
+         return error.response.data;
+       }
+       throw error;
     }
 }
 
-
+/* 
 (async () => {
 try {
     const threadID = "thread_P5zMu6l0ZuWQTji3zES75B45";
@@ -32,4 +35,4 @@ try {
 } catch (error) {
     console.log(error)
 }
-})()
+})() */
