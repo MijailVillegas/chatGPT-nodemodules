@@ -1,7 +1,5 @@
 # API Gateway Lambda Handler
 
-Este repositorio contiene la implementación de un handler para una Lambda Function que procesa distintos eventos recibidos a través de API Gateway. El handler distribuye las solicitudes a diferentes funciones en función del tipo de evento especificado en el cuerpo de la solicitud.
-
 ## Requisitos
 
 - Node.js: versión 16 o superior.
@@ -11,7 +9,16 @@ Este repositorio contiene la implementación de un handler para una Lambda Funct
 1. Clona este repositorio en tu máquina local.
 2. Instala las dependencias del proyecto ejecutando el siguiente comando en la terminal:
 
-## Descripción General
+## Índice
+
+1. [Introducción](#introducción)
+2. [Descripción General](#descripcion-general)
+
+## Introducción
+
+Este repositorio contiene la implementación de un handler para una Lambda Function que procesa distintos eventos recibidos a través de API Gateway. El handler distribuye las solicitudes a diferentes funciones en función del tipo de evento especificado en el cuerpo de la solicitud.
+
+## descripcion-general
 
 El archivo principal es el `handler`, que sirve como punto de entrada para todas las solicitudes. La función `handler` se asegura de que las solicitudes pasen por una autenticación antes de redirigirlas a la función de manejo de eventos correspondiente, basada en el nombre del evento.
 
