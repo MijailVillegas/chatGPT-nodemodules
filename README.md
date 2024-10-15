@@ -75,8 +75,8 @@ Todas las respuestas positivas se deolverán con un estado `200` y el nombre del
 
 ```json
 {
-    "status": 200,
-    "event" : "nombre_del_evento",
+  "status": 200,
+  "event": "nombre_del_evento"
 }
 ```
 
@@ -84,8 +84,10 @@ Ejemplo de respuesta:
 
 ```json
 {
-    "status": 200,
-    "event" : "nombre_del_evento",
+  "status": 200,
+  "event": "new_bot",
+  "bot_id": "bot-123-abc",
+  "thread_id": "thread-123-abc"
 }
 ```
 
@@ -473,6 +475,6 @@ Un `Promise<Object>` con los siguientes campos:
 
 ```json
 {
-    "auth": true
+  "auth": true
 }
 ```
