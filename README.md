@@ -97,7 +97,7 @@ Es un Middleware para asegurar una capa de protección extra contra el uso indeb
 - **handleBotRoutine**: Ejecuta una rutina programada para crear los 5 bots de Marketing, Finanzas, Recursos Humanos y Estrategia, el bot GADU deberá ser creado sólamente después de ciertas condiciones.
 - **handleCredentials**: Verifica las credenciales enviadas.
 
-### Train
+## Train
 
 Se hace la llamada a este evento con el nombre de `**train**` y hace uso del módulo `handleCheckTrain`.
 
@@ -156,9 +156,9 @@ Un `Promise<Object>` con los siguientes campos:
     - El archivo no se puede subir o no se puede crear el trabajo de finetuning.
     - El trabajo de finetuning no se puede crear o no se puede verificar su estado.
 
-### Verificar el Entrenamiento
+## Verificar el Entrenamiento
 
-Se hace la llamada a este evento con el nombre de `**check_finetuning**` y hace uso del módulo `handleCheckFinetuning`.
+Se hace la llamada a este evento con el nombre de `check_finetuning` y hace uso del módulo `handleCheckTrain`.
 
 Verifica el estado de un trabajo de finetuning dado su ID.
 
@@ -202,9 +202,9 @@ Un `Object` con la siguiente estructura:
     - El `id` no es válido o no se puede verificar el estado del trabajo.
     - El trabajo de finetuning no se pudo crear o no se puede verificar su estado.
 
-### Crear un Hilo
+## Crear un Hilo
 
-Se hace la llamada a este evento con el nombre de `create_thread` y hace uso del módulo `handleCreateThread`.
+Se hace la llamada a este evento con el nombre de `create_thread` y hace uso del módulo `handleNewThread`.
 
 Crea un nuevo hilo utilizando la API de OpenAI.
 
@@ -230,23 +230,19 @@ Un `Object` con los datos de respuesta de la API de OpenAI.
   - Lanza un `Error` si:
     - La solicitud a la API falla.
 
-### Enviar Mensaje al Hilo
+## Enviar Mensaje al Hilo
 
-Se hace la llamada a este evento con el nombre de `**send_message**` y hace uso del módulo `handleSendMessage`.
+Se hace la llamada a este evento con el nombre de `send_message` y hace uso del módulo `handleMessaging`.
 
 Envía un mensaje a un hilo y espera a que el bot termine su tarea.
 
-#### Parámetros
+- **Parámetros**
 
 - `threadID` (String): El ID del hilo al cual se enviará el mensaje.
 - `botID` (String): El ID del bot que procesará el mensaje.
 - `message` (String): El mensaje que se enviará al bot.
 
-#### Retorna
-
-Un `Promise<String>` con la respuesta del bot.
-
-#### Ejemplo de uso
+- **Ejemplo de uso**
 
 ```json
 {
@@ -262,7 +258,59 @@ Un `Promise<String>` con la respuesta del bot.
 }
 ```
 
+- **Retorna**
+
+Un `Promise<String>` con la respuesta del bot.
+
+```json
+{
+  "message": "el mensaje del bot"
+}
+```
+
 - **Errores**
 
   - Lanza un `Error` si:
     - La solicitud si la solicitud falla o si el bot no puede procesar el mensaje.
+
+## Crear Bot con Hilo
+
+Se hace la llamada a este evento con el nombre de `create_bot_thread` y hace uso del módulo `handleBot`.
+
+Crea un bot y un hilo y devuelve un objeto con los IDs de ambos.
+
+- **Parámetros**
+
+  - `name` (String): El nombre del bot.
+  - `instructions` (String): Las instrucciones que seguirá el bot.
+  - `modelID` (String): El ID del modelo de lenguaje que usará el bot.
+
+- **Ejemplo de uso**
+
+```json
+{
+  "payload": {
+    // Datos encriptados
+  },
+  "body": {
+    "event": "create_bot_thread", // nombre del evento
+    "name": "Chistero", // nombre del bot
+    "instructions": "Cuenta chistes divertidos y aptos para todo público.", // instrucciones del bot
+    "modelID": "model-abc-456" // ID del modelo de lenguaje
+  }
+}
+```
+
+- **Retorna**
+
+Un `Object` con los siguientes campos:
+
+- `bot_id` (String): El ID del bot creado.
+- `thread_id` (String): El ID del hilo creado para el bot.
+
+```json
+{
+    "bot_id": "bot-123-abc",
+    "thread_id" : "thread-123-abc",
+}
+```
