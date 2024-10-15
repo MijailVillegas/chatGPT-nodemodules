@@ -32,7 +32,8 @@ export function isAuthenticated(payload) {
  *   - {Object} payload - Un objeto con dos propiedades:
  *     - {String} token - Un token de autenticación.
  *     - {String} signature - La firma digital del token.
- *   - {Object} body - El archivo JSONL con los datos de entrenamiento.
+ *   - {Object} body - Un objeto con dos propiedades:
+ *      - {String} jsonl - El archivo JSONL con los datos de entrenamiento.
  * @returns {Promise<Object>} - Un objeto con los siguientes campos:
  *   - {String} file_id - El ID del archivo subido.
  *   - {String} job_id - El ID del trabajo de finetuning.
@@ -44,7 +45,7 @@ export function isAuthenticated(payload) {
  */
 export default async function trainFileJSONL(data) {
   try {
-    const fileResponse = await UploadJSONLFile(data.body);
+    const fileResponse = await UploadJSONLFile(data.body.jsonl);
     const { id: fileId } = fileResponse;
 
     const tuningResponse = await CreateFineTuning(fileId);
