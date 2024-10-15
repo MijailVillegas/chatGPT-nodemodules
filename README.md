@@ -66,9 +66,9 @@ Todas las solicitudes deben tener el siguiente formato:
 }
 ```
 
-Dónde `payload` es el token y la firma proporcionada para autenticar al cliente.
+- Dónde `payload` es el token y la firma proporcionada para autenticar al cliente.
 
-Dónde `body` es el cuerpo en el que se envía la solicitud con `event_name` como el identificador del evento que se desea ejecutar.
+- Dónde `body` es el cuerpo en el que se envía la solicitud con `event_name` como el identificador del evento que se desea ejecutar.
 
 Si no se cumple con el `body` se tentrá un error por defecto de `500`, `400` ó en su defecto si no se identifica correctamente con el payload `401`.
 
@@ -89,7 +89,10 @@ Es un Middleware para asegurar una capa de protección extra contra el uso indeb
 
 ### handleTrain
 
-Entrena un archivo JSONL subido a la plataforma de GPT con un finetuning, el archivo JSONL debe estar en formato texto. **NO ACEPTA BUFFER DE ARCHIVOS**
+Entrena un archivo JSONL subido a la plataforma de GPT con un finetuning, el archivo JSONL debe estar en formato texto.
+
+> [!IMPORTANT]  
+> **NO ACEPTA BUFFER DE ARCHIVOS**
 
 Por ejemplo:
 
