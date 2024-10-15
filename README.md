@@ -72,6 +72,15 @@ Todas las solicitudes deben tener el siguiente formato:
 
 Si no se cumple con el `body` se tentrá un error por defecto de `500`, `400` ó en su defecto si no se identifica correctamente con el payload `401`.
 
+Por ejemplo
+
+```json
+{
+    "status": 401,
+    "message": "unauthorized",
+}
+```
+
 (esto explicar en el handleCredentials)
 El payload es proporcionado con un una firma de intercambio de llaves `.pem` para asegurar la autenticidad del cliente haciendo la petición.
 
@@ -124,9 +133,18 @@ Se debe incluir al menos **10 ejemplos** para cada entrenamiento, cada ejemplo s
 Un `Promise<Object>` con los siguientes campos:
 
 - `file_id` (String): El ID del archivo subido.
-- `job_id` (String): El ID del trabajo de finetuning.
-- `status` (String): El estado del trabajo de finetuning.
-- `estimated_finish` (Number): La fecha estimada de finalización del trabajo.
+- `job_id` (String): El ID del trabajo de finetuning, usado para consultar si el estado del procesamiento datos.
+- `status` (String): El estado del trabajo de finetuning, `succeeded` cuando termine.
+- `estimated_finish` (Number): La fecha estimada de finalización del trabajo (30 minutos a partir del envío por defecto), la fecha no es determinada, es estimada, usualmente se puede obtener un `null` como respuesta.
+
+```json
+{
+    "file_id": "file-abc-123",
+    "job_id" : "job-abc-123",
+    "status" : "succeeded",
+    "estimated_finish" : 1726504568,
+}
+```
 
 #### Errores
 
