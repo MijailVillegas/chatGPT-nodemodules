@@ -99,7 +99,7 @@ Es un Middleware para asegurar una capa de protección extra contra el uso indeb
 
 ## Train
 
-Se hace la llamada a este evento con el nombre de `**train**` y hace uso del módulo `handleCheckTrain`.
+Se hace la llamada a este evento con el nombre de `train` y hace uso del módulo `handleCheckTrain`.
 
 Entrena un archivo JSONL subido a la plataforma de GPT con un finetuning, el archivo JSONL debe estar en formato texto.
 
@@ -109,9 +109,11 @@ Entrena un archivo JSONL subido a la plataforma de GPT con un finetuning, el arc
 Por ejemplo:
 
 ```json
-jsonl: [
-{"messages": [{"role": "system", "content": "Chistero es un chatbot experto en contar chistes cortos y divertidos."}, {"role": "user", "content": "Cuéntame un chiste."}, {"role": "assistant", "content": "¿Por qué los pájaros no usan Facebook? Porque ya tienen Twitter."}]},
-{"messages": [{"role": "system", "content": "Chistero es un chatbot experto en contar chistes cortos y divertidos."}, {"role": "user", "content": "Dime un chiste de animales."}, {"role": "assistant", "content": "¿Qué le dice un pez a otro pez? ¡Nada!"}]}
+messages: [
+{"role": "user", "content": "Cuéntame un chiste."},
+{"role": "assistant", "content": "¿Por qué los pájaros no usan Facebook? Porque ya tienen Twitter."},
+{"role": "user", "content": "Dime un chiste de animales."},
+{"role": "assistant", "content": "¿Qué le dice un pez a otro pez? ¡Nada!"},
 ]
 ```
 
@@ -126,7 +128,8 @@ Se debe incluir al menos **10 ejemplos** para cada entrenamiento, cada ejemplo s
   },
   "body": {
     "event": "train", //nombre del evento
-    "jsonl": [] //aqui los ejemplos
+    "assistant" : "mk" // el asistente a otorgar a este entrenamiento
+    "messages": [] //aqui los ejemplos
   }
 }
 ```
@@ -310,7 +313,69 @@ Un `Object` con los siguientes campos:
 
 ```json
 {
+  "bot_id": "bot-123-abc",
+  "thread_id": "thread-123-abc"
+}
+```
+
+### Rutina de Bots
+
+Se hace la llamada a este evento con el nombre de `bot_routine` y hace uso del módulo `handleBotRoutine`.
+
+Crea un bot para cada una de los asistentes, el de finanzas, marketing, RRHH y estrategia, devuelve un objeto con los IDs de los asistentes y los hilos correspondientes.
+
+- **Parámetros**
+
+  - `modelID` (String): El ID del modelo de lenguaje que usarán los bots, en este caso el id del modelo entrenado.
+
+- **Ejemplo de uso**
+
+```json
+{
+  "payload": {
+    // Datos encriptados
+  },
+  "body": {
+    "event": "create_bots_threads", // nombre del evento
+    "modelID": "model-abc-456" // ID del modelo de lenguaje
+  }
+}
+```
+
+- _Retorna_
+
+Un `Object` con los siguientes campos:
+
+- `marketing` (Object): Un objeto que contiene los campos:
+  - `bot_id` (String): El ID del bot para marketing.
+  - `thread_id` (String): El ID del hilo para marketing.
+- `finance` (Object): Un objeto que contiene los campos:
+  - `bot_id` (String): El ID del bot para finanzas.
+  - `thread_id` (String): El ID del hilo para finanzas.
+- `rrhh` (Object): Un objeto que contiene los campos:
+  - `bot_id` (String): El ID del bot para RRHH.
+  - `thread_id` (String): El ID del hilo para RRHH.
+- `strategy` (Object): Un objeto que contiene los campos:
+  - `bot_id` (String): El ID del bot para estrategia.
+  - `thread_id` (String): El ID del hilo para estrategia.
+
+```json
+{
+  "marketing": {
     "bot_id": "bot-123-abc",
-    "thread_id" : "thread-123-abc",
+    "thread_id": "thread-123-abc"
+  },
+  "fiance": {
+    "bot_id": "bot-123-abc",
+    "thread_id": "thread-123-abc"
+  },
+  "rrhh": {
+    "bot_id": "bot-123-abc",
+    "thread_id": "thread-123-abc"
+  },
+  "strategy": {
+    "bot_id": "bot-123-abc",
+    "thread_id": "thread-123-abc"
+  }
 }
 ```
