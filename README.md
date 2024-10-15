@@ -17,16 +17,15 @@
 4. [URL Base](#url-base)
    - [Endpoints](#endpoints)
 5. [Formato de Solicitud](#formato-de-solicitud)
-6. [Módulos](#módulos)
-   - [handleTrain](#handletrain)
-   - [handleCheckTrain](#handlechecktrain)
+6. [Formato de Errores](#formato-de-errores)
+7. [Módulos](#módulos)
+   - [Train](#train)
+   - [Checking Training](#checking-training)
    - [handleNewThread](#handlenewthread)
    - [handleMessaging](#handlemessaging)
    - [handleBot](#handlebot)
    - [handleBotRoutine](#handlebotroutine)
    - [handleCredentials](#handlecredentials)
-4. [Manejo de Errores](#manejo-de-errores)
-5. [Ejemplos de Respuestas](#ejemplos-de-respuestas)
 
 ## Introducción
 
@@ -70,6 +69,8 @@ Todas las solicitudes deben tener el siguiente formato:
 
 - Dónde `body` es el cuerpo en el que se envía la solicitud con `event_name` como el identificador del evento que se desea ejecutar.
 
+## Formato de Errores
+
 Si no se cumple con el `body` se tentrá un error por defecto de `500`, `400` ó en su defecto si no se identifica correctamente con el payload `401`.
 
 Por ejemplo
@@ -88,19 +89,21 @@ Es un Middleware para asegurar una capa de protección extra contra el uso indeb
 
 ## Módulos
 
-- **handleTrain**: Maneja los eventos relacionados con el entrenamiento de modelos (paso 1, 2 o 3).
-- **handleCheckTrain**: Revisa el estado del entrenamiento de un modelo (paso 3).
-- **handleNewThread**: Crea un nuevo hilo de mensajes (paso 5).
-- **handleMessaging**: Gestiona la mensajería dentro de un hilo existente (paso 6, 7, 8 o 9).
+- **handleTrain**: Maneja los eventos relacionados con el entrenamiento de modelos.
+- **handleCheckTrain**: Revisa el estado del entrenamiento de un modelo.
+- **handleNewThread**: Crea un nuevo hilo para los mensajes.
+- **handleMessaging**: Gestiona la mensajería dentro de un hilo existente.
 - **handleBot**: Crea un nuevo bot.
-- **handleBotRoutine**: Ejecuta una rutina programada para un bot.
+- **handleBotRoutine**: Ejecuta una rutina programada para crear los 5 bots de Marketing, Finanzas, Recursos Humanos y Estrategia, el bot GADU deberá ser creado sólamente después de ciertas condiciones.
 - **handleCredentials**: Verifica las credenciales enviadas.
 
-### handleTrain
+### Train
+
+Se hace la llamada a este evento con el nombre de `**train**` y hace uso del módulo `handleCheckTrain`.
 
 Entrena un archivo JSONL subido a la plataforma de GPT con un finetuning, el archivo JSONL debe estar en formato texto.
 
-> [!IMPORTANT]  
+> [!WARNING]  
 > **NO ACEPTA BUFFER DE ARCHIVOS**
 
 Por ejemplo:
@@ -114,7 +117,7 @@ jsonl: [
 
 Se debe incluir al menos **10 ejemplos** para cada entrenamiento, cada ejemplo sería simplemente una línea del jsonl.
 
-#### Ejemplo de uso
++**Ejemplo de uso**
 
 ```json
 {
@@ -122,13 +125,13 @@ Se debe incluir al menos **10 ejemplos** para cada entrenamiento, cada ejemplo s
   // Datos encriptados
   },
   "body": {
-    "event": "train",
+    "event": "train", //nombre del evento
     "jsonl": [] //aqui los ejemplos
   }
 }
 ```
 
-#### Retorna
++**Retorna**
   
 Un `Promise<Object>` con los siguientes campos:
 
@@ -146,9 +149,40 @@ Un `Promise<Object>` con los siguientes campos:
 }
 ```
 
-#### Errores
++**Errores**
 
 - Lanza un `Error` si:
   - El `payload` no es válido o no se puede desencriptar.
   - El archivo no se puede subir o no se puede crear el trabajo de finetuning.
   - El trabajo de finetuning no se puede crear o no se puede verificar su estado.
+
+### Verificar el Entrenamiento
+
+Se hace la llamada a este evento con el nombre de `**check_finetuning**` y hace uso del módulo `handleCheckFinetuning`.
+
+Verifica el estado de un trabajo de finetuning dado su ID.
+
++**Parámetros**
+
+- `id` (String): El ID del trabajo de finetuning que se desea verificar.
+
++**Retorna**
+
+Un `Object` con la siguiente estructura:
+
+- `status` (String): El estado del trabajo de finetuning (`succeeded`, `in_progress`, `failed`, etc.).
+- `model` (String): El ID del modelo generado por el finetuning.
+- `estimated_finish` (Number): La fecha estimada de finalización del trabajo (en formato timestamp).
+
++**Ejemplo de uso**
+
+```json
+{
+  "payload": {
+    // Datos encriptados
+  },
+  "body": {
+    "event": "check_finetuning", // nombre del evento
+    "id": "job-abc-123" // ID del trabajo a verificar
+  }
+}
