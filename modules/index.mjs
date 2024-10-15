@@ -38,12 +38,12 @@ export const handler = async (event) => {
 
   try {
     console.log(`Handling event: ${body.event_name}`);
-    console.log({ payload: payload, body: body });
-    if (handler.length > 0) {
-      return await handler({ payload: event.payload, body: event.body });
-    } else {
-      return await handler();
-    }
+    const result = await handler({ payload: event.payload, body: event.body });
+    return {
+      status: 200,
+      event: body.event_name,
+      ...result,
+    };
   } catch (error) {
     return { status: error.status || 500, message: error.message };
   }

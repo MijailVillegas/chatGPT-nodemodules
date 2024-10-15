@@ -69,6 +69,26 @@ Todas las solicitudes deben tener el siguiente formato:
 
 - Dónde `body` es el cuerpo en el que se envía la solicitud con `event_name` como el identificador del evento que se desea ejecutar.
 
+## Formato de Respuestas
+
+Todas las respuestas positivas se deolverán con un estado `200` y el nombre del evento utilizado.
+
+```json
+{
+    "status": 200,
+    "event" : "nombre_del_evento",
+}
+```
+
+Ejemplo de respuesta:
+
+```json
+{
+    "status": 200,
+    "event" : "nombre_del_evento",
+}
+```
+
 ## Formato de Errores
 
 Si no se cumple con el `body` se tentrá un error por defecto de `500`, `400` ó en su defecto si no se identifica correctamente con el payload `401`.
@@ -101,23 +121,21 @@ Es un Middleware para asegurar una capa de protección extra contra el uso indeb
 
 Se hace la llamada a este evento con el nombre de `train` y hace uso del módulo `handleCheckTrain`.
 
-Entrena un archivo JSONL subido a la plataforma de GPT con un finetuning, el archivo JSONL debe estar en formato texto.
+Entrena un archivo JSONL subido a la plataforma de GPT con un finetuning, pero en este caso se recibirá un `Array` de conversación para el entrenamiento.
 
 > [!WARNING]  
-> **NO ACEPTA BUFFER DE ARCHIVOS**
+> **NO SE ACEPTA BUFFER DE ARCHIVOS**
 
 Por ejemplo:
 
 ```json
 messages: [
-{"role": "user", "content": "Cuéntame un chiste."},
-{"role": "assistant", "content": "¿Por qué los pájaros no usan Facebook? Porque ya tienen Twitter."},
-{"role": "user", "content": "Dime un chiste de animales."},
-{"role": "assistant", "content": "¿Qué le dice un pez a otro pez? ¡Nada!"},
+{"role": "user", "content": "Cuéntame un chiste."},{"role": "assistant", "content": "¿Por qué los pájaros no usan Facebook? Porque ya tienen Twitter."},
+{"role": "user", "content": "Dime un chiste de animales."},{"role": "assistant", "content": "¿Qué le dice un pez a otro pez? ¡Nada!"},
 ]
 ```
 
-Se debe incluir al menos **10 ejemplos** para cada entrenamiento, cada ejemplo sería simplemente una línea del jsonl.
+Se debe incluir al menos **10 ejemplos** para cada entrenamiento, cada ejemplo sería simplemente una línea del jsonl, lo que vendría a ser una pregunta más una respuesta, este patrón debería respetarse o se devolverá un error.
 
 - **Ejemplo de uso**
 
@@ -158,6 +176,7 @@ Un `Object` con los siguientes campos:
     - El `payload` no es válido o no se puede desencriptar.
     - El archivo no se puede subir o no se puede crear el trabajo de finetuning.
     - El trabajo de finetuning no se puede crear o no se puede verificar su estado.
+    - Los ejemplos son impares, es decir, no tienen una pregunta con su respuesta.
 
 ## Verificar el Entrenamiento
 
