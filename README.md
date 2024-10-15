@@ -472,9 +472,16 @@ Un `Promise<Object>` con los siguientes campos:
 
 - `event` (String): El nombre del evento.
 - `auth` (Boolean): `true` si el payload es válido, `false` de lo contrario.
+F
 
 ```json
 {
   "auth": true
 }
 ```
+
+- **Errores**
+
+  - Lanza un `Error` si:
+    - No se pueden crear los bots o los hilos.
+    - Fallan todas las rutinas.
