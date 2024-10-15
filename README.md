@@ -47,13 +47,12 @@ Todas las solicitudes deben tener el siguiente formato:
 - **handleTrain**: Maneja los eventos relacionados con el entrenamiento de modelos (paso 1, 2 o 3).
 - `##` Entrena un archivo JSONL subido a la plataforma de GPT con un finetuning.".
 
-- `###` Parámetros
-- `data`: Un objeto con dos propiedades:
-
-  - `payload`: Un objeto con dos propiedades:
-    - `token` (String): Un token de autenticación.
-    - `signature` (String): La firma digital del token.
-  - `body`: El archivo JSONL con los datos de entrenamiento.
+  - `Parámetros`
+        - `data`: Un objeto con dos propiedades:
+        - `payload`: Un objeto con dos propiedades:
+            - `token` (String): Un token de autenticación.
+            - `signature` (String): La firma digital del token.
+        - `body`: El archivo JSONL con los datos de entrenamiento.
 
 ### Ejemplo de uso
 
@@ -67,7 +66,7 @@ Todas las solicitudes deben tener el siguiente formato:
     "file": "training-data.jsonl"
   }
 }
-
+```
 
 - `###` Retorna
   Un `Promise<Object>` con los siguientes campos:
@@ -82,7 +81,6 @@ Todas las solicitudes deben tener el siguiente formato:
   - El archivo no se puede subir o no se puede crear el trabajo de finetuning.
   - El trabajo de finetuning no se puede crear o no se puede verificar su estado.
 
-
 - **handleCheckTrain**: Revisa el estado del entrenamiento de un modelo (paso 3).
 - **handleNewThread**: Crea un nuevo hilo de mensajes (paso 5).
 - **handleMessaging**: Gestiona la mensajería dentro de un hilo existente (paso 6, 7, 8 o 9).
@@ -90,4 +88,3 @@ Todas las solicitudes deben tener el siguiente formato:
 - **handleBotRoutine**: Ejecuta una rutina programada para un bot.
 - **handleCredentials**: Verifica las credenciales enviadas.
 - **isAuthenticated**: Función que verifica si el `payload` enviado está autenticado correctamente.
-```
