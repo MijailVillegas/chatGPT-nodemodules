@@ -1,5 +1,14 @@
 import gptInstance from "../Axios/axiosDefaultConf.mjs";
 
+/**
+ * Esta funci n crea un nuevo hilo utilizando la API de OpenAI.
+ *
+ * @async
+ * @function CreateThread
+ * @returns {Promise<Object>} - Los datos de respuesta de la API de OpenAI.
+ * @throws {Error} - Lanza un error si la solicitud falla.
+ *
+ */
 export async function CreateThread() {
     try {
         const response = await gptInstance.post(
@@ -16,6 +25,7 @@ export async function CreateThread() {
         throw new Error(error);
     }
 }
+
 
 /* (async () => {
     try {

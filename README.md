@@ -77,8 +77,8 @@ Por ejemplo
 
 ```json
 {
-    "status": 401,
-    "message": "unauthorized",
+  "status": 401,
+  "message": "unauthorized"
 }
 ```
 
@@ -108,7 +108,7 @@ Entrena un archivo JSONL subido a la plataforma de GPT con un finetuning, el arc
 
 Por ejemplo:
 
-``` json
+```json
 jsonl: [
 {"messages": [{"role": "system", "content": "Chistero es un chatbot experto en contar chistes cortos y divertidos."}, {"role": "user", "content": "Cuéntame un chiste."}, {"role": "assistant", "content": "¿Por qué los pájaros no usan Facebook? Porque ya tienen Twitter."}]},
 {"messages": [{"role": "system", "content": "Chistero es un chatbot experto en contar chistes cortos y divertidos."}, {"role": "user", "content": "Dime un chiste de animales."}, {"role": "assistant", "content": "¿Qué le dice un pez a otro pez? ¡Nada!"}]}
@@ -117,12 +117,12 @@ jsonl: [
 
 Se debe incluir al menos **10 ejemplos** para cada entrenamiento, cada ejemplo sería simplemente una línea del jsonl.
 
-+**Ejemplo de uso**
+- **Ejemplo de uso**
 
 ```json
 {
   "payload": {
-  // Datos encriptados
+    // Datos encriptados
   },
   "body": {
     "event": "train", //nombre del evento
@@ -131,8 +131,8 @@ Se debe incluir al menos **10 ejemplos** para cada entrenamiento, cada ejemplo s
 }
 ```
 
-+**Retorna**
-  
+- **Retorna**
+
 Un `Promise<Object>` con los siguientes campos:
 
 - `file_id` (String): El ID del archivo subido.
@@ -142,14 +142,14 @@ Un `Promise<Object>` con los siguientes campos:
 
 ```json
 {
-    "file_id": "file-abc-123",
-    "job_id" : "job-abc-123",
-    "status" : "succeeded",
-    "estimated_finish" : 1726504568,
+  "file_id": "file-abc-123",
+  "job_id": "job-abc-123",
+  "status": "succeeded",
+  "estimated_finish": 1726504568
 }
 ```
 
-+**Errores**
+- **Errores**
 
 - Lanza un `Error` si:
   - El `payload` no es válido o no se puede desencriptar.
@@ -162,19 +162,11 @@ Se hace la llamada a este evento con el nombre de `**check_finetuning**` y hace 
 
 Verifica el estado de un trabajo de finetuning dado su ID.
 
-+**Parámetros**
+- **Parámetros**
 
 - `id` (String): El ID del trabajo de finetuning que se desea verificar.
 
-+**Retorna**
-
-Un `Object` con la siguiente estructura:
-
-- `status` (String): El estado del trabajo de finetuning (`succeeded`, `in_progress`, `failed`, etc.).
-- `model` (String): El ID del modelo generado por el finetuning.
-- `estimated_finish` (Number): La fecha estimada de finalización del trabajo (en formato timestamp).
-
-+**Ejemplo de uso**
+- **Ejemplo de uso**
 
 ```json
 {
@@ -186,3 +178,54 @@ Un `Object` con la siguiente estructura:
     "id": "job-abc-123" // ID del trabajo a verificar
   }
 }
+```
+
+- **Retorna**
+
+Un `Object` con la siguiente estructura:
+
+- `status` (String): El estado del trabajo de finetuning (`succeeded`, `in_progress`, `failed`, etc.).
+- `model` (String): El ID del modelo generado por el finetuning.
+- `estimated_finish` (Number): La fecha estimada de finalización del trabajo (en formato timestamp), sólo aparecerá si el estatus es `succeeded`.
+
+```json
+{
+  "status": "succeeded",
+  "model": "tunning-abc-123",
+  "estimated_finish": 1726504568
+}
+```
+
+- **Errores**
+
+- Lanza un `Error` si:
+  - El `id` no es válido o no se puede verificar el estado del trabajo.
+  - El trabajo de finetuning no se pudo crear o no se puede verificar su estado.
+
+### Crear Hilo
+
+Se hace la llamada a este evento con el nombre de `**create_thread**` y hace uso del módulo `handleCreateThread`.
+
+Crea un nuevo hilo utilizando la API de OpenAI.
+
+- **Retorna**
+
+Un `Promise<Object>` con los datos de respuesta de la API de OpenAI.
+
+- **Ejemplo de uso**
+
+```json
+{
+  "payload": {
+    // Datos encriptados
+  },
+  "body": {
+    "event": "create_thread" // nombre del evento
+  }
+}
+```
+
+- **Errores**
+
+- Lanza un `Error` si:
+  - La solicitud a la API falla.
