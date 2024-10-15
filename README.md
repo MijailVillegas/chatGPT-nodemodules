@@ -25,7 +25,7 @@
    - [Enviar Mensaje al Hilo](#enviar-mensaje-al-hilo)
    - [Crear Bot con Hilo](#crear-bot-con-hilo)
    - [Rutina de Bots](#rutina-de-bots)
-   - [handleCredentials](#handlecredentials)
+   - [Verificar Credenciales](#verificar-credenciales)
 
 ## Introducción
 
@@ -363,14 +363,14 @@ Un `Object` con los siguientes campos:
 - `strategy` (`Object`): Un objeto que contiene los campos:
   - `bot_id` (`String`): El ID del bot para estrategia.
   - `thread_id` (`String`): El ID del hilo para estrategia.
-  
+
 ```json
 {
   "marketing": {
     "bot_id": "bot-123-abc",
     "thread_id": "thread-123-abc"
   },
-  "fiance": {
+  "finance": {
     "bot_id": "bot-123-abc",
     "thread_id": "thread-123-abc"
   },
@@ -399,7 +399,7 @@ Por ejemplo:
     "bot_id": "bot-123-abc",
     "thread_id": null
   },
-  "fiance": {
+  "finance": {
     "error": "Error"
   },
   "rrhh": {
@@ -418,3 +418,42 @@ Por ejemplo:
   - Lanza un `Error` si:
     - No se pueden crear los bots o los hilos.
     - Fallan todas las rutinas.
+
+## Verificar Credenciales
+
+Se hace la llamada a este evento con el nombre de `check_credentials` y hace uso del módulo `handleCredendials`.
+
+Verifica si el payload es válido y ha sido desencriptado correctamente sin tener que recurrir al uso innecesario de los otros eventos para evitar procesamiento de datos innecesarios.
+
+- **Parámetros**
+
+  - `payload` (Object): Un objeto que contiene:
+    - `token` (String): El token de autenticación.
+    - `signature` (String): La firma digital del token.
+
+- **Ejemplo de uso**
+
+```json
+{
+  "payload": {
+    "token": "abc123",
+    "signature": "signature-xyz456"
+  },
+  "body": {
+    "event": "check_credentials" // nombre del evento
+  }
+}
+```
+
+- **Retorna**
+
+Un `Promise<Object>` con los siguientes campos:
+
+- `event` (String): El nombre del evento.
+- `auth` (Boolean): `true` si el payload es válido, `false` de lo contrario.
+
+```json
+{
+    "auth": true
+}
+```
