@@ -17,6 +17,16 @@ const eventHandlers = {
   check_credentials: handleCredendials,
 };
 
+/**
+ * Entry point for all API Gateway requests. Routes the request to the
+ * corresponding event handler.
+ *
+ * @param {Object} event - The event object passed by API Gateway.
+ * @param {Object} event.payload - The payload encrypted by the client.
+ * @param {Object} event.body - The body of the request.
+ *
+ * @returns {Promise<Object>} - The response object.
+ */
 export const handler = async (event) => {
   const { payload, body } = event;
 
@@ -32,7 +42,7 @@ export const handler = async (event) => {
     if (handler.length > 0) {
       return await handler({ payload: event.payload, body: event.body });
     } else {
-      return await handler(); 
+      return await handler();
     }
   } catch (error) {
     return { status: error.status || 500, message: error.message };

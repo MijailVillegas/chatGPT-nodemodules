@@ -210,7 +210,7 @@ export async function msgFromThread(threadID, botID, message) {
       if(run.error?.type) throw run;
     }
     const messages = await listMsgFromThread(threadID, "desc", 1);
-    return messages.data[0].content[0].text.value;
+    return {message: messages.data[0].content[0].text.value};
   } catch (error) {
     if (error.response && error.response.data) {
       return error.response.data;
