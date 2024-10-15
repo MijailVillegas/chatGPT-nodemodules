@@ -483,5 +483,4 @@ F
 - **Errores**
 
   - Lanza un `Error` si:
-    - No se pueden crear los bots o los hilos.
-    - Fallan todas las rutinas.
+    - Fallanvarificación de credenciales.
