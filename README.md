@@ -20,9 +20,9 @@
 6. [Formato de Errores](#formato-de-errores)
 7. [Módulos](#módulos)
    - [Train](#train)
-   - [Checking Training](#checking-training)
-   - [handleNewThread](#handlenewthread)
-   - [handleMessaging](#handlemessaging)
+   - [Verificar el Entrenamiento](#verificar-el-entrenamiento)
+   - [Crear un Hilo](#crear-un-hilo)
+   - [Enviar Mensaje al Hilo](#enviar-mensaje-al-hilo)
    - [handleBot](#handlebot)
    - [handleBotRoutine](#handlebotroutine)
    - [handleCredentials](#handlecredentials)
@@ -151,10 +151,10 @@ Un `Promise<Object>` con los siguientes campos:
 
 - **Errores**
 
-- Lanza un `Error` si:
-  - El `payload` no es válido o no se puede desencriptar.
-  - El archivo no se puede subir o no se puede crear el trabajo de finetuning.
-  - El trabajo de finetuning no se puede crear o no se puede verificar su estado.
+  - Lanza un `Error` si:
+    - El `payload` no es válido o no se puede desencriptar.
+    - El archivo no se puede subir o no se puede crear el trabajo de finetuning.
+    - El trabajo de finetuning no se puede crear o no se puede verificar su estado.
 
 ### Verificar el Entrenamiento
 
@@ -186,7 +186,7 @@ Un `Object` con la siguiente estructura:
 
 - `status` (String): El estado del trabajo de finetuning (`succeeded`, `in_progress`, `failed`, etc.).
 - `model` (String): El ID del modelo generado por el finetuning.
-- `estimated_finish` (Number): La fecha estimada de finalización del trabajo (en formato timestamp), sólo aparecerá si el estatus es `succeeded`.
+- `estimated_finish` (Number): La fecha estimada de finalización del trabajo (en formato timestamp), no aparecerá si el estatus es `succeeded`.
 
 ```json
 {
@@ -198,19 +198,19 @@ Un `Object` con la siguiente estructura:
 
 - **Errores**
 
-- Lanza un `Error` si:
-  - El `id` no es válido o no se puede verificar el estado del trabajo.
-  - El trabajo de finetuning no se pudo crear o no se puede verificar su estado.
+  - Lanza un `Error` si:
+    - El `id` no es válido o no se puede verificar el estado del trabajo.
+    - El trabajo de finetuning no se pudo crear o no se puede verificar su estado.
 
-### Crear Hilo
+### Crear un Hilo
 
-Se hace la llamada a este evento con el nombre de `**create_thread**` y hace uso del módulo `handleCreateThread`.
+Se hace la llamada a este evento con el nombre de `create_thread` y hace uso del módulo `handleCreateThread`.
 
 Crea un nuevo hilo utilizando la API de OpenAI.
 
 - **Retorna**
 
-Un `Promise<Object>` con los datos de respuesta de la API de OpenAI.
+Un `Object` con los datos de respuesta de la API de OpenAI.
 
 - **Ejemplo de uso**
 
@@ -227,5 +227,42 @@ Un `Promise<Object>` con los datos de respuesta de la API de OpenAI.
 
 - **Errores**
 
-- Lanza un `Error` si:
-  - La solicitud a la API falla.
+  - Lanza un `Error` si:
+    - La solicitud a la API falla.
+
+### Enviar Mensaje al Hilo
+
+Se hace la llamada a este evento con el nombre de `**send_message**` y hace uso del módulo `handleSendMessage`.
+
+Envía un mensaje a un hilo y espera a que el bot termine su tarea.
+
+#### Parámetros
+
+- `threadID` (String): El ID del hilo al cual se enviará el mensaje.
+- `botID` (String): El ID del bot que procesará el mensaje.
+- `message` (String): El mensaje que se enviará al bot.
+
+#### Retorna
+
+Un `Promise<String>` con la respuesta del bot.
+
+#### Ejemplo de uso
+
+```json
+{
+  "payload": {
+    // Datos encriptados
+  },
+  "body": {
+    "event": "send_message", // nombre del evento
+    "threadID": "thread-xyz-789", // ID del hilo
+    "botID": "bot-abc-456", // ID del bot
+    "messaging": "Hola, ¿cómo estás?" // mensaje a enviar
+  }
+}
+```
+
+- **Errores**
+
+  - Lanza un `Error` si:
+    - La solicitud si la solicitud falla o si el bot no puede procesar el mensaje.
