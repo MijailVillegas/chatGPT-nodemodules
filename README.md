@@ -23,8 +23,8 @@
    - [Verificar el Entrenamiento](#verificar-el-entrenamiento)
    - [Crear un Hilo](#crear-un-hilo)
    - [Enviar Mensaje al Hilo](#enviar-mensaje-al-hilo)
-   - [handleBot](#handlebot)
-   - [handleBotRoutine](#handlebotroutine)
+   - [Crear Bot con Hilo](#crear-bot-con-hilo)
+   - [Rutina de Bots](#rutina-de-bots)
    - [handleCredentials](#handlecredentials)
 
 ## Introducción
@@ -136,11 +136,11 @@ Se debe incluir al menos **10 ejemplos** para cada entrenamiento, cada ejemplo s
 
 - **Retorna**
 
-Un `Promise<Object>` con los siguientes campos:
+Un `Object` con los siguientes campos:
 
-- `file_id` (String): El ID del archivo subido.
-- `job_id` (String): El ID del trabajo de finetuning, usado para consultar si el estado del procesamiento datos.
-- `status` (String): El estado del trabajo de finetuning, `succeeded` cuando termine.
+- `file_id` (`String`): El ID del archivo subido.
+- `job_id` (`String`): El ID del trabajo de finetuning, usado para consultar si el estado del procesamiento datos.
+- `status` (`String`): El estado del trabajo de finetuning, `succeeded` cuando termine.
 - `estimated_finish` (Number): La fecha estimada de finalización del trabajo (30 minutos a partir del envío por defecto), la fecha no es determinada, es estimada, usualmente se puede obtener un `null` como respuesta.
 
 ```json
@@ -167,7 +167,7 @@ Verifica el estado de un trabajo de finetuning dado su ID.
 
 - **Parámetros**
 
-- `id` (String): El ID del trabajo de finetuning que se desea verificar.
+- `id` (`String`): El ID del trabajo de finetuning que se desea verificar.
 
 - **Ejemplo de uso**
 
@@ -187,8 +187,8 @@ Verifica el estado de un trabajo de finetuning dado su ID.
 
 Un `Object` con la siguiente estructura:
 
-- `status` (String): El estado del trabajo de finetuning (`succeeded`, `in_progress`, `failed`, etc.).
-- `model` (String): El ID del modelo generado por el finetuning.
+- `status` (`String`): El estado del trabajo de finetuning (`succeeded`, `in_progress`, `failed`, etc.).
+- `model` (`String`): El ID del modelo generado por el finetuning.
 - `estimated_finish` (Number): La fecha estimada de finalización del trabajo (en formato timestamp), no aparecerá si el estatus es `succeeded`.
 
 ```json
@@ -241,9 +241,9 @@ Envía un mensaje a un hilo y espera a que el bot termine su tarea.
 
 - **Parámetros**
 
-- `threadID` (String): El ID del hilo al cual se enviará el mensaje.
-- `botID` (String): El ID del bot que procesará el mensaje.
-- `message` (String): El mensaje que se enviará al bot.
+- `threadID` (`String`): El ID del hilo al cual se enviará el mensaje.
+- `botID` (`String`): El ID del bot que procesará el mensaje.
+- `message` (`String`): El mensaje que se enviará al bot.
 
 - **Ejemplo de uso**
 
@@ -263,7 +263,7 @@ Envía un mensaje a un hilo y espera a que el bot termine su tarea.
 
 - **Retorna**
 
-Un `Promise<String>` con la respuesta del bot.
+Un `Promise<`String`>` con la respuesta del bot.
 
 ```json
 {
@@ -274,19 +274,19 @@ Un `Promise<String>` con la respuesta del bot.
 - **Errores**
 
   - Lanza un `Error` si:
-    - La solicitud si la solicitud falla o si el bot no puede procesar el mensaje.
+    - La solicitud falla o si el bot no puede procesar el mensaje.
 
 ## Crear Bot con Hilo
 
-Se hace la llamada a este evento con el nombre de `create_bot_thread` y hace uso del módulo `handleBot`.
+Se hace la llamada a este evento con el nombre de `new_bot` y hace uso del módulo `handleBot`.
 
 Crea un bot y un hilo y devuelve un objeto con los IDs de ambos.
 
 - **Parámetros**
 
-  - `name` (String): El nombre del bot.
-  - `instructions` (String): Las instrucciones que seguirá el bot.
-  - `modelID` (String): El ID del modelo de lenguaje que usará el bot.
+  - `name` (`String`): El nombre del bot.
+  - `instructions` (`String`): Las instrucciones que seguirá el bot.
+  - `modelID` (`String`): El ID del modelo de lenguaje que usará el bot.
 
 - **Ejemplo de uso**
 
@@ -296,7 +296,7 @@ Crea un bot y un hilo y devuelve un objeto con los IDs de ambos.
     // Datos encriptados
   },
   "body": {
-    "event": "create_bot_thread", // nombre del evento
+    "event": "new_bot", // nombre del evento
     "name": "Chistero", // nombre del bot
     "instructions": "Cuenta chistes divertidos y aptos para todo público.", // instrucciones del bot
     "modelID": "model-abc-456" // ID del modelo de lenguaje
@@ -308,8 +308,8 @@ Crea un bot y un hilo y devuelve un objeto con los IDs de ambos.
 
 Un `Object` con los siguientes campos:
 
-- `bot_id` (String): El ID del bot creado.
-- `thread_id` (String): El ID del hilo creado para el bot.
+- `bot_id` (`String`): El ID del bot creado.
+- `thread_id` (`String`): El ID del hilo creado para el bot.
 
 ```json
 {
@@ -317,6 +317,11 @@ Un `Object` con los siguientes campos:
   "thread_id": "thread-123-abc"
 }
 ```
+
+- **Errores**
+
+  - Lanza un `Error` si:
+    - No se pueden crear el bots o el hilo.
 
 ### Rutina de Bots
 
@@ -326,7 +331,7 @@ Crea un bot para cada una de los asistentes, el de finanzas, marketing, RRHH y e
 
 - **Parámetros**
 
-  - `modelID` (String): El ID del modelo de lenguaje que usarán los bots, en este caso el id del modelo entrenado.
+  - `modelID` (`String`): El ID del modelo de lenguaje que usarán los bots, en este caso el id del modelo entrenado.
 
 - **Ejemplo de uso**
 
@@ -336,29 +341,29 @@ Crea un bot para cada una de los asistentes, el de finanzas, marketing, RRHH y e
     // Datos encriptados
   },
   "body": {
-    "event": "create_bots_threads", // nombre del evento
+    "event": "bot_routine", // nombre del evento
     "modelID": "model-abc-456" // ID del modelo de lenguaje
   }
 }
 ```
 
-- _Retorna_
+- **Retorna**
 
 Un `Object` con los siguientes campos:
 
-- `marketing` (Object): Un objeto que contiene los campos:
-  - `bot_id` (String): El ID del bot para marketing.
-  - `thread_id` (String): El ID del hilo para marketing.
-- `finance` (Object): Un objeto que contiene los campos:
-  - `bot_id` (String): El ID del bot para finanzas.
-  - `thread_id` (String): El ID del hilo para finanzas.
-- `rrhh` (Object): Un objeto que contiene los campos:
-  - `bot_id` (String): El ID del bot para RRHH.
-  - `thread_id` (String): El ID del hilo para RRHH.
-- `strategy` (Object): Un objeto que contiene los campos:
-  - `bot_id` (String): El ID del bot para estrategia.
-  - `thread_id` (String): El ID del hilo para estrategia.
-
+- `marketing` (`Object`): Un objeto que contiene los campos:
+  - `bot_id` (`String`): El ID del bot para marketing.
+  - `thread_id` (`String`): El ID del hilo para marketing.
+- `finance` (`Object`): Un objeto que contiene los campos:
+  - `bot_id` (`String`): El ID del bot para finanzas.
+  - `thread_id` (`String`): El ID del hilo para finanzas.
+- `rrhh` (`Object`): Un objeto que contiene los campos:
+  - `bot_id` (`String`): El ID del bot para RRHH.
+  - `thread_id` (`String`): El ID del hilo para RRHH.
+- `strategy` (`Object`): Un objeto que contiene los campos:
+  - `bot_id` (`String`): El ID del bot para estrategia.
+  - `thread_id` (`String`): El ID del hilo para estrategia.
+  
 ```json
 {
   "marketing": {
@@ -379,3 +384,15 @@ Un `Object` con los siguientes campos:
   }
 }
 ```
+
+> [!IMPORTANT]  
+> **LA RUTINA PUEDE DEVOLVERSE INCOMPLETA**
+> Si ocurre algún error en alguna de las rutinas se recuperará datos incompletos.
+> Si los datos se recuperan incompletos se tendrá que llamar al evento `new_bot` o en su defecto
+> si se obtiene un id del bot pero no de el hilo se tendrá que llamar al evento `create_thread`.
+
+- **Errores**
+
+  - Lanza un `Error` si:
+    - No se pueden crear los bots o los hilos.
+    - Fallan todas las rutinas.

@@ -131,6 +131,13 @@ export async function makeBot(param) {
 
     const thread = await CreateThread();
 
+    if (thread.error?.type) {
+      return {
+        bot_id: bot.id,
+        thread_id: null,
+      };
+    }
+
     return {
       bot_id: bot.id,
       thread_id: thread.id,
@@ -142,6 +149,7 @@ export async function makeBot(param) {
     throw error;
   }
 }
+
 /**
  * Crea un bot para cada una de las IPs (finanzas, marketing, RRHH y estrategia)
  * y devuelve un objeto con los IDs de los bots y threads.
@@ -177,7 +185,14 @@ export async function makeBotsRoutine(modelID) {
       name: "Estrategia",
       instructions: strategyIP.instructions,
       modelID: modelID,
-  });
+    });
+
+    const errors = [finance.error, marketing.error, rrhh.error, strategy.error]
+      .filter((error) => error != null);
+
+    if (errors.length > 0) {
+      throw errors[0];
+    }
 
     return {
       marketing: marketing,
@@ -193,7 +208,6 @@ export async function makeBotsRoutine(modelID) {
     throw error;
   }
 }
-
 /**
  * Envía un mensaje a un hilo y espera a que el bot termine su tarea.
  * @param {String} threadID - El ID del hilo.
