@@ -323,7 +323,7 @@ Un `Object` con los siguientes campos:
   - Lanza un `Error` si:
     - No se pueden crear el bots o el hilo.
 
-### Rutina de Bots
+## Rutina de Bots
 
 Se hace la llamada a este evento con el nombre de `bot_routine` y hace uso del módulo `handleBotRoutine`.
 
@@ -390,6 +390,28 @@ Un `Object` con los siguientes campos:
 > Si ocurre algún error en alguna de las rutinas se recuperará datos incompletos.
 > Si los datos se recuperan incompletos se tendrá que llamar al evento `new_bot` o en su defecto
 > si se obtiene un id del bot pero no de el hilo se tendrá que llamar al evento `create_thread`.
+
+Por ejemplo:
+
+```json
+{
+  "marketing": {
+    "bot_id": "bot-123-abc",
+    "thread_id": null
+  },
+  "fiance": {
+    "error": "Error"
+  },
+  "rrhh": {
+    "bot_id": "bot-123-abc",
+    "thread_id": null
+  },
+  "strategy": {
+    "bot_id": "bot-123-abc",
+    "thread_id": "thread-123-abc"
+  }
+}
+```
 
 - **Errores**
 

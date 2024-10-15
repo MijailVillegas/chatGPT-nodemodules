@@ -10,7 +10,10 @@ import { CreateChatBot } from "./4-crear-bot.chat.mjs";
 import { CreateThread } from "./5-create-thread.chat.mjs";
 import { sendMsgToThread } from "./6-chat-thread-bot.chat.mjs";
 import { ChatBotWithThreading } from "./7-attachbot-thread.chat.mjs";
-import { listMsgFromThread, retrieveRunFromThread } from "./9-retrieve-msg.chat.mjs";
+import {
+  listMsgFromThread,
+  retrieveRunFromThread,
+} from "./9-retrieve-msg.chat.mjs";
 
 /**
  * @function isAuthenticated
@@ -52,18 +55,20 @@ export default async function trainFileJSONL(data) {
     if (tuningResponse.error.type) {
       throw new Error(tuningResponse.error);
     }
-   
+
     const checkTuning = await checkFineTuning(tuningResponse.id);
     if (checkTuning.error.type) {
       throw new Error(checkTuning.error);
-    }    
+    }
 
     return {
-     file_id: fileId,
-     job_id: tuningResponse.id,
-     status: tuningResponse.status,
-     estimated_finish: tuningResponse.estimated_finish ? tuningResponse.estimated_finish : Date.now() + (30 * 60 * 1000),
-   };
+      file_id: fileId,
+      job_id: tuningResponse.id,
+      status: tuningResponse.status,
+      estimated_finish: tuningResponse.estimated_finish
+        ? tuningResponse.estimated_finish
+        : Date.now() + 30 * 60 * 1000,
+    };
   } catch (error) {
     if (error.response && error.response.data) {
       return error.response.data;
@@ -98,9 +103,10 @@ export async function checkFineTuning(id) {
 
     return {
       status: checkTuning.status,
-      estimated_finish: checkTuning.estimated_finish ? checkTuning.estimated_finish : Date.now() + (30 * 60 * 1000),
+      estimated_finish: checkTuning.estimated_finish
+        ? checkTuning.estimated_finish
+        : Date.now() + 30 * 60 * 1000,
     };
-
   } catch (error) {
     if (error.response && error.response.data) {
       return error.response.data;
@@ -163,35 +169,42 @@ export async function makeBot(param) {
  */
 export async function makeBotsRoutine(modelID) {
   try {
-    const finance = await makeBot({
-      name: "Finanzas",
-      instructions: financeIP.instructions,
-      modelID: modelID,
+    const [finance, marketing, rrhh, strategy] = await Promise.all([
+      makeBot({
+        name: "Finanzas",
+        instructions: financeIP.instructions,
+        modelID: modelID,
+      }).catch((error) => ({ error: error.message || error })),
+      makeBot({
+        name: "Marketing",
+        instructions: marketingIP.instructions,
+        modelID: modelID,
+      }).catch((error) => ({ error: error.message || error })),
+      makeBot({
+        name: "RRHH",
+        instructions: rrhhIP.instructions,
+        modelID: modelID,
+      }).catch((error) => ({ error: error.message || error })),
+      makeBot({
+        name: "Estrategia",
+        instructions: strategyIP.instructions,
+        modelID: modelID,
+      }).catch((error) => ({ error: error.message || error })),
+    ]).catch((error) => {
+      throw error;
     });
 
-    const marketing = await makeBot({
-      name: "Marketing",
-      instructions: marketingIP.instructions,
-      modelID: modelID,
-    });
+    const errors = [
+      finance.error,
+      marketing.error,
+      rrhh.error,
+      strategy.error,
+    ].filter((error) => error != null);
 
-    const rrhh = await makeBot({
-      name: "RRHH",
-      instructions: rrhhIP.instructions,
-      modelID: modelID,
-    });
-
-    const strategy = await makeBot({
-      name: "Estrategia",
-      instructions: strategyIP.instructions,
-      modelID: modelID,
-    });
-
-    const errors = [finance.error, marketing.error, rrhh.error, strategy.error]
-      .filter((error) => error != null);
-
-    if (errors.length > 0) {
-      throw errors[0];
+    if (errors.length === 4) {
+      throw new Error(
+        `No se pudieron crear los siguientes bots: ${errors.join(", ")}`
+      );
     }
 
     return {
@@ -199,8 +212,7 @@ export async function makeBotsRoutine(modelID) {
       finance: finance,
       rrhh: rrhh,
       strategy: strategy,
-    }
-
+    };
   } catch (error) {
     if (error.response && error.response.data) {
       return error.response.data;
@@ -208,6 +220,7 @@ export async function makeBotsRoutine(modelID) {
     throw error;
   }
 }
+
 /**
  * Envía un mensaje a un hilo y espera a que el bot termine su tarea.
  * @param {String} threadID - El ID del hilo.
@@ -218,15 +231,15 @@ export async function makeBotsRoutine(modelID) {
 export async function msgFromThread(threadID, botID, message) {
   try {
     const sent = await sendMsgToThread(threadID, message);
-    let run = await ChatBotWithThreading(threadID,botID);
+    let run = await ChatBotWithThreading(threadID, botID);
     if (run.error?.type) throw run;
     while (run.status !== "completed" && run.status !== "failed") {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       run = await retrieveRunFromThread(threadID, run.id);
-      if(run.error?.type) throw run;
+      if (run.error?.type) throw run;
     }
     const messages = await listMsgFromThread(threadID, "desc", 1);
-    return {message: messages.data[0].content[0].text.value};
+    return { message: messages.data[0].content[0].text.value };
   } catch (error) {
     if (error.response && error.response.data) {
       return error.response.data;
