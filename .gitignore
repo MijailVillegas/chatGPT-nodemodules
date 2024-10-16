@@ -1,5 +1,6 @@
 # Ignorar la carpeta node_modules
 node_modules/
-
+chat/responses/
+DataBuild/
 # Ignorar archivos específicos
 .env

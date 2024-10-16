@@ -284,7 +284,7 @@ Envía un mensaje a un hilo y espera a que el bot termine su tarea.
 
 - **Retorna**
 
-Un `Promise<`String`>` con la respuesta del bot.
+Un `String` con la respuesta del bot.
 
 ```json
 {
@@ -468,7 +468,7 @@ Verifica si el payload es válido y ha sido desencriptado correctamente sin tene
 
 - **Retorna**
 
-Un `Promise<Object>` con los siguientes campos:
+Un `Object` con los siguientes campos:
 
 - `event` (String): El nombre del evento.
 - `auth` (Boolean): `true` si el payload es válido, `false` de lo contrario.
