@@ -28,27 +28,19 @@ export function isAuthenticated(payload) {
   return valid;
 }
 
+
 /**
+ * Trains a JSONL file for a custom language model using OpenAI's GPT.
+ *
  * @function trainFileJSONL
- * @description Entrena un archivo JSONL subido a la plataforma de GPT con un finetuning.
- * @param {Object} data - Un objeto con dos propiedades:
- *   - {Object} payload - Un objeto con dos propiedades:
- *     - {String} token - Un token de autenticación.
- *     - {String} signature - La firma digital del token.
- *   - {Object} body - Un objeto con dos propiedades:
- *      - {String} jsonl - El archivo JSONL con los datos de entrenamiento.
- * @returns {Promise<Object>} - Un objeto con los siguientes campos:
- *   - {String} file_id - El ID del archivo subido.
- *   - {String} job_id - El ID del trabajo de finetuning.
- *   - {String} status - El estado del trabajo de finetuning.
- *   - {Number} estimated_finish - La fecha estimada de finalización del trabajo.
- * @throws {Error} Si el payload no es válido o no se puede desencriptar.
- * @throws {Error} Si el archivo no se puede subir o no se puede crear el trabajo de finetuning.
- * @throws {Error} Si el trabajo de finetuning no se puede crear o no se puede verificar su estado.
+ * @param {Object} fileData - The data of the JSONL file to be trained.
+ * @returns {Promise<Object>} - A promise that resolves to an object containing the file ID, job ID, status, and estimated finish time.
+ * @throws {Error} - If the payload is invalid or cannot be decrypted.
+ * @throws {Error} - If the fine-tuning job cannot be created or its status cannot be verified.
  */
-export default async function trainFileJSONL(data) {
+export default async function trainFileJSONL(fileData) {
   try {
-    const fileResponse = await UploadJSONLFile(data.body.jsonl);
+    const fileResponse = await UploadJSONLFile(fileData);
     const { id: fileId } = fileResponse;
 
     const tuningResponse = await CreateFineTuning(fileId);
@@ -76,6 +68,7 @@ export default async function trainFileJSONL(data) {
     throw error;
   }
 }
+
 
 /**
  * Verifica el estado de un trabajo de finetuning.

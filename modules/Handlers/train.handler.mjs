@@ -1,4 +1,5 @@
 import trainFileJSONL from "../../chat/functions.chat.mjs";
+import { buildCompletitions } from "../DataBuilder/IncubationBuilder.mjs";
 
 /**
  * Handler del evento "train". Esta función llama a "trainFileJSONL"
@@ -17,9 +18,10 @@ import trainFileJSONL from "../../chat/functions.chat.mjs";
  * @throws {Error} Si el archivo no se puede subir o no se puede crear el trabajo de finetuning.
  * @throws {Error} Si el trabajo de finetuning no se puede crear o no se puede verificar su estado.
  */
-export const handleTrain = async (body) => {
+export const handleTrain = async (params) => {
   try {
-    const { status, ...data } = await trainFileJSONL(body);
+    const trainingData = buildCompletitions(params.body.completitions);
+    const { status, ...data } = await trainFileJSONL(trainingData);
     return { status, event: "train", ...data };
   } catch (error) {
     return { status: error.statusCode || 500, message: error.message };

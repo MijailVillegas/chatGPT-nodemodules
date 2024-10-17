@@ -1,17 +1,19 @@
-import { handleTrain } from "./Handlers/train.handler.mjs";
-import { handleCheckTrain } from "./Handlers/checkTrain.handler.mjs";
-import { handleNewThread } from "./Handlers/thread.handler.mjs";
-import { handleMessaging } from "./Handlers/messaging.handler.mjs";
-import { handleBot } from "./Handlers/newBot.handler.mjs";
-import { handleBotRoutine } from "./Handlers/botRoutine.handler.mjs";
-import { handleCredendials } from "./Handlers/checkCredentials.handler.mjs";
-import { isAuthenticated } from "../chat/functions.chat.mjs";
+import { handleTrain } from "./modules/Handlers/train.handler.mjs";
+import { handleCheckTrain } from "./modules/Handlers/checkTrain.handler.mjs";
+import { handleNewThread } from "./modules/Handlers/thread.handler.mjs";
+import { handleMessaging } from "./modules/Handlers/messaging.handler.mjs";
+import { handleBot } from "./modules/Handlers/newBot.handler.mjs";
+import { handleBotRoutine } from "./modules/Handlers/botRoutine.handler.mjs";
+import { handleCredendials } from "./modules/Handlers/checkCredentials.handler.mjs";
+import { isAuthenticated } from "./chat/functions.chat.mjs";
+import { handleTrainIncubation } from "./modules/Handlers/trainIncubation.handler.mjs";
 
 const eventHandlers = {
-  train: handleTrain /* Paso 1, 2 o 3 */,
-  check_train: handleCheckTrain /* Paso 3 */,
-  new_thread: handleNewThread /* Paso 5 */,
-  messaging: handleMessaging /* Paso 6, 7, 8 o 9*/,
+  train: handleTrain,
+  train_incubation: handleTrainIncubation,
+  check_train: handleCheckTrain,
+  new_thread: handleNewThread,
+  messaging: handleMessaging,
   new_bot: handleBot,
   bot_routine: handleBotRoutine,
   check_credentials: handleCredendials,

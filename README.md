@@ -19,7 +19,8 @@
 5. [Formato de Solicitud](#formato-de-solicitud)
 6. [Formato de Errores](#formato-de-errores)
 7. [Módulos](#módulos)
-   - [Train](#train)
+   - [Entrenar](#entrenar)
+   - [Entrenar Incubación](#entrenar-incubación)
    - [Verificar el Entrenamiento](#verificar-el-entrenamiento)
    - [Crear un Hilo](#crear-un-hilo)
    - [Enviar Mensaje al Hilo](#enviar-mensaje-al-hilo)
@@ -119,11 +120,11 @@ Es un Middleware para asegurar una capa de protección extra contra el uso indeb
 - **handleBotRoutine**: Ejecuta una rutina programada para crear los 5 bots de Marketing, Finanzas, Recursos Humanos y Estrategia, el bot GADU deberá ser creado sólamente después de ciertas condiciones.
 - **handleCredentials**: Verifica las credenciales enviadas.
 
-## Train
+## Entrenar
 
 Se hace la llamada a este evento con el nombre de `train` y hace uso del módulo `handleCheckTrain`.
 
-Entrena un archivo JSONL subido a la plataforma de GPT con un finetuning, pero en este caso se recibirá un `Array` de conversación para el entrenamiento.
+Entrena un archivo JSONL subido a la plataforma de OpenAI con un finetuning, pero en este caso se recibirá un `Array` de conversación para el entrenamiento.
 
 > [!WARNING]  
 > **NO SE ACEPTA BUFFER DE ARCHIVOS**
@@ -148,7 +149,6 @@ Se debe incluir al menos **10 ejemplos** para cada entrenamiento, cada ejemplo s
   },
   "body": {
     "event": "train", //nombre del evento
-    "assistant" : "mk" // el asistente a otorgar a este entrenamiento
     "messages": [] //aqui los ejemplos
   }
 }
@@ -179,6 +179,37 @@ Un `Object` con los siguientes campos:
     - El archivo no se puede subir o no se puede crear el trabajo de finetuning.
     - El trabajo de finetuning no se puede crear o no se puede verificar su estado.
     - Los ejemplos son impares, es decir, no tienen una pregunta con su respuesta.
+
+## Entrenar Incubación
+
+Se hace la llamada a este evento con el nombre de `train_incubation` y hace uso del módulo `handleTrainIncubation`.
+
+Entrena un archivo JSONL subido a la plataforma de OpenAI con un finetuning, pero en este caso se recibirá un `Array` de conversación para el entrenamiento y un `Array` de las fases A-E con las preguntas y respuestas.
+
+> [!WARNING]  
+> **NO SE ACEPTA BUFFER DE ARCHIVOS**
+
+- **Parámetros**
+TODO: COMPLETAR LA DOCUMENTACIÓN DE ESTA PARTE
+  - completions (`Array`): Un arreglo que contiene la fase y los datos correspondientes.
+    - fase (`string`): Contiene la fase a la que pertenecen las preguntas y respuestas
+    - data (`array`): Un arreglo que contiene las preguntas y respuestas como identificadores.
+      - P (`number`): Es el número de la pregunta a la que pertenece.
+      - r (`number`): Es el número de la respuesta a la que pertenece.
+
+- **Ejemplo de uso**
+
+```json
+{
+  "payload": {
+    // Datos encriptados
+  },
+  "body": {
+    "event": "check_finetuning", // nombre del evento
+    "id": "job-abc-123" // ID del trabajo a verificar
+  }
+}
+```
 
 ## Verificar el Entrenamiento
 

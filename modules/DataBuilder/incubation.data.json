@@ -1,0 +1,367 @@
+[
+  {
+    "fase": "A",
+    "data": [
+      {
+        "p": "1. ¿Tienes un sistema de contabilidad organizado que te permite rastrear ingresos y gastos con precisión?",
+        "r": [
+          "1 (Muy Bajo): No tengo un sistema de contabilidad establecido y no puedo rastrear ingresos y gastos con precisión.",
+          "2 (Bajo): Tengo un sistema de contabilidad básico, pero a menudo es difícil rastrear ingresos y gastos con precisión.",
+          "3 (Medio): Mi sistema de contabilidad es funcional, pero hay margen de mejora para rastrear ingresos y gastos de manera más precisa.",
+          "4 (Alto): Mi sistema de contabilidad es bastante organizado y generalmente puedo rastrear ingresos y gastos con precisión.",
+          "5 (Muy Alto): Mi sistema de contabilidad está muy bien organizado y siempre puedo rastrear ingresos y gastos con precisión."
+        ]
+      },
+      {
+        "p": "2. ¿Cómo evaluarías tu entendimiento sobre los estados financieros de tu negocio?",
+        "r": [
+          "1 (Muy Bajo): No entiendo los estados financieros de mi negocio y necesito asistencia para interpretarlos.",
+          "2 (Bajo): Tengo un entendimiento básico de los estados financieros, pero a menudo necesito ayuda para comprenderlos por completo",
+          "3 (Medio): Entiendo los estados financieros de mi negocio, pero podría mejorar en la interpretación de algunos detalles",
+          "4 (Alto): Tengo un buen entendimiento de los estados financieros y puedo interpretarlos correctamente en la mayoría de los casos",
+          "5 (Muy Alto): Comprendo perfectamente los estados financieros de mi negocio y puedo analizarlos e interpretarlos con facilidad"
+        ]
+      },
+      {
+        "p": "3. ¿Has establecido presupuestos anuales y los revisas regularmente?",
+        "r": [
+          "1 (Muy Bajo): No establezco presupuestos anuales y no los reviso regularmente",
+          "2 (Bajo): Establezco presupuestos anuales, pero rara vez los reviso durante el año",
+          "3 (Medio): Establezco presupuestos anuales y los reviso de vez en cuando, pero no de manera regular",
+          "4 (Alto): Establezco presupuestos anuales y los reviso regularmente, asegurándome de que estén actualizados y alineados con mis objetivos",
+          "5 (Muy Alto): Establezco presupuestos anuales detallados y los reviso de manera continua, ajustándolos según sea necesario para mantener el control financiero"
+        ]
+      },
+      {
+        "p": "4. ¿Tienes acceso a suficientes recursos financieros para soportar tu plan de negocio actual?",
+        "r": [
+          "1 (Muy Bajo): No tengo acceso a suficientes recursos financieros y es un desafío constante financiar mi plan de negocio",
+          "2 (Bajo): Tengo acceso limitado a recursos financieros y frecuentemente enfrento dificultades para financiar mi plan de negocio",
+          "3 (Medio): Tengo acceso a algunos recursos financieros, pero ocasionalmente encuentro dificultades para financiar mi plan de negocio por completo",
+          "4 (Alto): Tengo acceso adecuado a recursos financieros y generalmente puedo soportar mi plan de negocio sin problemas significativos",
+          "5 (Muy Alto): Tengo acceso a todos los recursos financieros necesarios y puedo soportar mi plan de negocio plenamente sin ninguna dificultad"
+        ]
+      },
+      {
+        "p": "5. ¿Cuán efectivamente gestionas el flujo de caja en tu negocio?",
+        "r": [
+          "1 (Muy Bajo): Tengo muchas dificultades para gestionar el flujo de caja y frecuentemente enfrento problemas de liquidez",
+          "2 (Bajo): Gestiono el flujo de caja de manera básica, pero a menudo tengo problemas para mantener la liquidez necesaria",
+          "3 (Medio): Gestiono el flujo de caja de manera razonable, pero podría mejorar en la anticipación y manejo de problemas de liquidez",
+          "4 (Alto): Gestiono el flujo de caja de manera efectiva y rara vez enfrento problemas significativos de liquidez",
+          "5 (Muy Alto): Gestiono el flujo de caja de manera excelente y siempre mantengo un nivel óptimo de liquidez para las operaciones del negocio"
+        ]
+      },
+      {
+        "p": "6. ¿Conoces tus principales fuentes de ingreso y costos?",
+        "r": [
+          "1 (Muy Bajo): No conozco mis principales fuentes de ingreso ni mis costos y tengo dificultades para identificarlos",
+          "2 (Bajo): Tengo una idea básica de mis principales fuentes de ingreso y costos, pero carezco de un conocimiento detallado",
+          "3 (Medio): Conozco mis principales fuentes de ingreso y costos, pero podría mejorar en el seguimiento y análisis de estos",
+          "4 (Alto): Tengo un buen conocimiento de mis principales fuentes de ingreso y costos y los sigo y analizo regularmente",
+          "5 (Muy Alto): Conozco perfectamente mis principales fuentes de ingreso y costos y los gestiono de manera detallada y constante"
+        ]
+      },
+      {
+        "p": "7. ¿Qué tan efectiva consideras tu gestión del capital de trabajo en tu negocio?",
+        "r": [
+          "1 (Muy Bajo): No gestiono el capital de trabajo de manera efectiva y frecuentemente enfrento problemas de liquidez",
+          "2 (Bajo): Mi gestión del capital de trabajo es básica y a menudo tengo dificultades para mantener un flujo de caja adecuado",
+          "3 (Medio): Gestiono el capital de trabajo de manera razonable, pero podría mejorar en la optimización de los recursos disponibles",
+          "4 (Alto): Gestiono el capital de trabajo de manera efectiva y generalmente mantengo un flujo de caja saludable",
+          "5 (Muy Alto): Gestiono el capital de trabajo de manera excelente y siempre optimizo los recursos disponibles para mantener un flujo de caja sólido"
+        ]
+      }
+    ]
+  },
+  {
+    "fase": "B",
+    "data": [
+      {
+        "p": "1. ¿Qué tan bien están definidos y documentados tus procesos operativos?",
+        "r": [
+          "1 (Muy Bajo): Mis procesos operativos no están definidos ni documentados, lo que genera confusión y errores frecuentes",
+          "2 (Bajo): Tengo algunos procesos operativos definidos, pero pocos están documentados y hay falta de consistencia en su aplicación",
+          "3 (Medio): Mis procesos operativos están definidos y documentados de manera básica, pero hay áreas que necesitan más detalle y mejora",
+          "4 (Alto): La mayoría de mis procesos operativos están bien definidos y documentados, y generalmente se siguen de manera consistente",
+          "5 (Muy Alto): Todos mis procesos operativos están claramente definidos y detalladamente documentados, y se siguen de manera rigurosa y consistente"
+        ]
+      },
+      {
+        "p": "2. ¿Qué tan bien utilizas la tecnología para optimizar las operaciones? (Ej: Software)",
+        "r": [
+          "1 (Muy Bajo): No utilizo tecnología para optimizar las operaciones y opero principalmente con métodos manuales",
+          "2 (Bajo): Utilizo algo de tecnología, pero su implementación es limitada y no tiene un impacto significativo en la optimización de operaciones",
+          "3 (Medio): Utilizo tecnología de manera moderada para optimizar las operaciones, pero hay áreas donde podría aprovecharla mejor",
+          "4 (Alto): Utilizo tecnología de manera efectiva para optimizar la mayoría de las operaciones y he visto mejoras notables en la eficiencia",
+          "5 (Muy Alto): Utilizo tecnología de manera avanzada y estratégica para optimizar todas las operaciones, logrando una alta eficiencia y efectividad en los procesos"
+        ]
+      },
+      {
+        "p": "3. ¿Cómo calificas el manejo de tu logística y cadena de suministros?",
+        "r": [
+          "1 (Muy Bajo): Mi manejo de la logística y cadena de suministros es deficiente, con frecuentes problemas de retrasos y falta de coordinación",
+          "2 (Bajo): Tengo un manejo básico de la logística y cadena de suministros, pero enfrento problemas ocasionales y falta de eficiencia",
+          "3 (Medio): Manejo la logística y cadena de suministros de manera aceptable, aunque hay áreas que podrían beneficiarse de una mayor eficiencia y coordinación",
+          "4 (Alto): Tengo un buen manejo de la logística y cadena de suministros, con procesos eficientes y una coordinación adecuada en la mayoría de los casos",
+          "5 (Muy Alto): Mi manejo de la logística y cadena de suministros es excelente, con procesos altamente eficientes y una coordinación impecable que minimiza problemas y optimiza el rendimiento"
+        ]
+      },
+      {
+        "p": "4. ¿Cuál es tu capacidad para escalar las operaciones si es necesario?",
+        "r": [
+          "1 (Muy Bajo): Tengo una capacidad muy limitada para escalar las operaciones y enfrentaría grandes dificultades para hacerlo de manera efectiva",
+          "2 (Bajo): Mi capacidad para escalar las operaciones es básica y podría enfrentar desafíos significativos para aumentar la escala de manera eficiente",
+          "3 (Medio): Tengo una capacidad moderada para escalar las operaciones, pero hay áreas que necesitan desarrollo para mejorar la eficiencia en el proceso de escalado",
+          "4 (Alto): Tengo una buena capacidad para escalar las operaciones y puedo hacerlo de manera efectiva con una planificación adecuada y ajustes necesarios",
+          "5 (Muy Alto): Tengo una excelente capacidad para escalar las operaciones rápidamente y de manera eficiente, con sistemas y estrategias bien establecidos para manejar el crecimiento"
+        ]
+      },
+      {
+        "p": "5. ¿Tienes procedimientos establecidos para la gestión de crisis o interrupciones operativas?",
+        "r": [
+          "1 (Ninguno): No tengo procedimientos establecidos para la gestión de crisis o interrupciones operativas",
+          "2 (Pocos): Tengo algunos procedimientos básicos, pero son limitados y no cubren todas las posibles crisis o interrupciones",
+          "3 (Algunos): Tengo varios procedimientos establecidos para la gestión de crisis y interrupciones, aunque podrían ser más detallados y completos",
+          "4 (Bastantes): Tengo una cantidad considerable de procedimientos bien establecidos para gestionar crisis e interrupciones operativas, cubriendo la mayoría de los escenarios posibles",
+          "5 (Muchos): Tengo procedimientos exhaustivos y bien documentados para la gestión de crisis e interrupciones operativas, con planes detallados para una amplia gama de posibles situaciones"
+        ]
+      },
+      {
+        "p": "6. ¿Cómo calificas tu eficiencia y efectividad de tu cadena de suministro y logística?",
+        "r": [
+          "1 (Muy Malo): La cadena de suministro y logística son muy ineficaces, con frecuentes problemas de retrasos, errores y falta de coordinación",
+          "2 (Malo): La cadena de suministro y logística tienen varios problemas y no son confiables, con dificultades en la coordinación y el cumplimiento de plazos",
+          "3 (Regular): La cadena de suministro y logística funcionan de manera aceptable, pero hay áreas de mejora y ocasionalmente surgen problemas que afectan la eficiencia",
+          "4 (Buena): La cadena de suministro y logística son bastante eficientes, con una buena coordinación y pocos problemas significativos",
+          "5 (Muy Buena): La cadena de suministro y logística son altamente eficientes y bien gestionadas, con procesos optimizados que minimizan problemas y garantizan un alto nivel de efectividad"
+        ]
+      },
+      {
+        "p": "7. ¿Qué tan difíciles calificas los desafíos operativos que enfrentas?",
+        "r": [
+          "1 (Muy Bajo): Los desafíos operativos que enfrento son mínimos y fáciles de manejar, sin causar grandes problemas",
+          "2 (Bajo): Los desafíos operativos son relativamente simples y manejables, con algunas dificultades ocasionales",
+          "3 (Medio): Los desafíos operativos son moderados y a veces presentan dificultades, pero puedo gestionarlos con una planificación y recursos adecuados",
+          "4 (Alto): Los desafíos operativos son bastante complejos y frecuentemente requieren soluciones significativas y esfuerzos adicionales para manejar",
+          "5 (Muy Alto): Los desafíos operativos son muy difíciles de enfrentar y requieren una atención constante y soluciones complejas para ser gestionados eficazmente"
+        ]
+      }
+    ]
+  },
+  {
+    "fase": "C",
+    "data": [
+      {
+        "p": "1. ¿Cómo calificarías las políticas de recursos humanos que apoyen y motiven a tu equipo?",
+        "r": [
+          "1 (Muy Malas): Las políticas de recursos humanos son muy ineficaces y no contribuyen en absoluto a apoyar ni motivar al equipo",
+          "2 (Malas): Las políticas de recursos humanos son inadecuadas y solo proporcionan un apoyo y motivación mínimos al equipo",
+          "3 (Regulares): Las políticas de recursos humanos son aceptables y ofrecen un apoyo y motivación básicos, pero podrían mejorarse para ser más efectivas",
+          "4 (Buenas): Las políticas de recursos humanos son bastante efectivas, brindan un buen apoyo y motivación al equipo, y contribuyen positivamente al ambiente de trabajo",
+          "5 (Muy Buenas): Las políticas de recursos humanos son excelentes, proporcionan un gran apoyo y motivación al equipo, y fomentan un ambiente de trabajo altamente positivo y productivo"
+        ]
+      },
+      {
+        "p": "2. ¿Qué tan frecuente ofreces formación y desarrollo continuo a tus empleados?",
+        "r": [
+          "1 (Nunca): No ofrezco formación ni oportunidades de desarrollo continuo a mis empleados",
+          "2 (Pocas Veces): Ofrezco formación y desarrollo continuo en raras ocasiones, sin un plan regular o estructurado",
+          "3 (Algunas Veces): Ofrezco formación y desarrollo continuo en algunas ocasiones, pero no de manera consistente o sistemática",
+          "4 (Bastantes Veces): Ofrezco formación y desarrollo continuo con regularidad, proporcionando oportunidades significativas para el crecimiento profesional",
+          "5 (Muchas Veces): Ofrezco formación y desarrollo continuo de manera frecuente y estructurada, con un enfoque constante en el crecimiento y la mejora de mis empleados"
+        ]
+      },
+      {
+        "p": "3. ¿Cómo manejas el rendimiento y la evaluación del personal?",
+        "r": [
+          "1 Nulo: No lo manejo",
+          "2 Bajo: Evalúo y pero lo manejo poco",
+          "3 Regular: Evalúo cada año pero me falta mejorar mis estrategias de rendimiento",
+          "4 Bueno: Evalúo cada x tiempo y tengo vinculado estrategias de rendimientos",
+          "5 Muy bueno: Manejo la evaluación de mi personal constantemente y tengo buen ambiente laboral"
+        ]
+      },
+      {
+        "p": "4. ¿Cuál crees que es el nivel de satisfacción general de tus empleados?",
+        "r": [
+          "1 (Muy Bajo): La satisfacción general de mis empleados es muy baja, con frecuentes quejas y descontento en el equipo",
+          "2 (Bajo): La satisfacción general de mis empleados es baja, con algunos problemas que afectan negativamente el ambiente de trabajo",
+          "3 (Medio): La satisfacción general de mis empleados es promedio, con algunos aspectos positivos y negativos que equilibran el nivel de contento",
+          "4 (Alto): La satisfacción general de mis empleados es alta, con un ambiente de trabajo generalmente positivo y pocas áreas de insatisfacción",
+          "5 (Muy Alto): La satisfacción general de mis empleados es muy alta, con un ambiente de trabajo excelente y un equipo altamente motivado y contento"
+        ]
+      },
+      {
+        "p": "5. ¿Aplicas estrategias de retención de empleados?",
+        "r": [
+          "1 (Nunca): No aplico estrategias para la retención de empleados y no tengo planes en este sentido",
+          "2 (Pocas Veces): Aplico estrategias de retención de empleados en raras ocasiones, sin un enfoque sistemático o regular",
+          "3 (Algunas Veces): Aplico estrategias de retención de empleados de manera ocasional, pero no de manera consistente o planificada",
+          "4 (Bastantes Veces): Aplico estrategias de retención de empleados con regularidad y tengo un enfoque estructurado para mantener al equipo motivado y comprometido",
+          "5 (Muchas Veces): Aplico estrategias de retención de empleados frecuentemente y de manera proactiva, con un enfoque bien planificado para maximizar la satisfacción y fidelidad del equipo"
+        ]
+      },
+      {
+        "p": "6. ¿Tienes programas de formación y desarrollo?",
+        "r": [
+          "1 (Ninguno): No tengo programas de formación ni desarrollo para empleados",
+          "2 (Pocos): Tengo pocos programas de formación y desarrollo, y son limitados en alcance y frecuencia",
+          "3 (Algunos): Tengo algunos programas de formación y desarrollo, que cubren varias áreas, pero podrían ser más completos y frecuentes",
+          "4 (Bastantes): Tengo varios programas de formación y desarrollo bien estructurados y que se aplican con regularidad",
+          "5 (Muchos): Tengo muchos programas de formación y desarrollo amplios y variados, ofrecidos de manera frecuente y con un enfoque integral en el crecimiento profesional de los empleados"
+        ]
+      },
+      {
+        "p": "7. ¿Evalúas el desempeño de tus empleados?",
+        "r": [
+          "1 (Nunca): No realizo evaluaciones del desempeño de mis empleados",
+          "2 (Pocas Veces): Realizo evaluaciones del desempeño en pocas ocasiones, sin un calendario fijo o estructura regular",
+          "3 (Algunas Veces): Evalúo el desempeño de mis empleados de manera ocasional, utilizando indicadores de rendimiento (KPIs) cuando es necesario",
+          "4 (Muchas Veces): Evalúo el desempeño de mis empleados con frecuencia, proporcionando feedback continuo y seguimiento regular",
+          "5 (Siempre): Realizo evaluaciones del desempeño de mis empleados de manera sistemática, con revisiones anuales y un proceso bien definido para evaluar y mejorar el rendimiento"
+        ]
+      }
+    ]
+  },
+  {
+    "fase": "D",
+    "data": [
+      {
+        "p": "1. ¿Consideras que tienes una estrategia de marketing clara y documentada?",
+        "r": [
+          "1 (No la tengo): No tengo una estrategia de marketing",
+          "2 (Tengo una idea): Tengo una idea básica de una estrategia de marketing, pero no está claramente definida ni documentada",
+          "3 (La tengo pero no la aplico): Tengo una estrategia de marketing documentada, pero no la aplico de manera consistente",
+          "4 (La tengo y la aplico): Tengo una estrategia de marketing clara y documentada, y la aplico regularmente",
+          "5 (La tengo y me funciona bien): Tengo una estrategia de marketing clara, documentada y bien implementada, y está funcionando eficazmente"
+        ]
+      },
+      {
+        "p": "2. ¿Con qué frecuencia mides el retorno de inversión (ROI) y el éxito de tus campañas de marketing?",
+        "r": [
+          "1 (Nunca): Nunca mido el retorno de inversión ni el éxito de mis campañas de marketing",
+          "2 (Pocas Veces): Mido el retorno de inversión y el éxito de mis campañas de marketing en raras ocasiones, sin una metodología regular",
+          "3 (Algunas Veces): Mido el retorno de inversión y el éxito de mis campañas de marketing de manera ocasional, pero no siempre de manera sistemática",
+          "4 (Bastantes Veces): Mido el retorno de inversión y el éxito de mis campañas de marketing con regularidad y aplico análisis para mejorar mis estrategias",
+          "5 (Muchas Veces): Mido el retorno de inversión y el éxito de mis campañas de marketing de manera frecuente y sistemática, utilizando datos y análisis para optimizar continuamente mis estrategias"
+        ]
+      },
+      {
+        "p": "3. ¿Utilizas herramientas digitales para tu marketing y ventas?",
+        "r": [
+          "1 (Nunca): Nunca utilizo herramientas digitales para marketing y ventas",
+          "2 (Pocas Veces): Utilizo herramientas digitales para marketing y ventas en raras ocasiones, sin una estrategia consistente",
+          "3 (Algunas Veces): Utilizo herramientas digitales para marketing y ventas de manera ocasional, pero no de forma sistemática",
+          "4 (Bastantes Veces): Utilizo herramientas digitales para marketing y ventas con regularidad y tengo una estrategia en marcha",
+          "5 (Muchas Veces): Utilizo herramientas digitales para marketing y ventas de manera frecuente y sistemática, integrándolas completamente en mi estrategia de negocio"
+        ]
+      },
+      {
+        "p": "4. ¿Cuál es tu nivel de engagement con los clientes a través de canales sociales y digitales?",
+        "r": [
+          "1 (Muy Bajo): Mi nivel de engagement con los clientes a través de canales sociales y digitales es muy bajo, con poca o ninguna interacción",
+          "2 (Bajo): Mi nivel de engagement con los clientes es bajo, con algunas interacciones esporádicas y sin una estrategia clara",
+          "3 (Medio): Mi nivel de engagement con los clientes es medio, con interacciones regulares pero no siempre consistentes ni estratégicas",
+          "4 (Alto): Mi nivel de engagement con los clientes es alto, con interacciones frecuentes y una estrategia bien definida",
+          "5 (Muy Alto): Mi nivel de engagement con los clientes es muy alto, con interacciones constantes y una estrategia altamente efectiva que fomenta una fuerte conexión con los clientes"
+        ]
+      },
+      {
+        "p": "5. ¿Conoces algún proceso para la gestión de la relación con el cliente?",
+        "r": [
+          "1 (No Conozco): No conozco ningún proceso para la gestión de la relación con el cliente",
+          "2 (Conozco Poco): Conozco algunos conceptos básicos pero no tengo una comprensión profunda ni he aplicado ningún proceso",
+          "3 (Conozco pero no Aplico): Conozco algunos procesos para la gestión de la relación con el cliente, pero no los aplico de manera consistente o efectiva",
+          "4 (Conozco, Aplico pero no Funciona): Conozco y aplico procesos para la gestión de la relación con el cliente, pero no estoy satisfecho con los resultados obtenidos",
+          "5 (Conozco, Aplico y Funciona): Conozco y aplico procesos efectivos para la gestión de la relación con el cliente, y estoy satisfecho con los resultados obtenidos"
+        ]
+      },
+      {
+        "p": "6. ¿Conoces cuál es tu público objetivo y cómo lo segmentas?",
+        "r": [
+          "1 (No Conozco): No conozco mi público objetivo ni cómo segmentarlo",
+          "2 (Conozco Poco): Conozco algunos aspectos básicos de mi público objetivo, pero no tengo una comprensión profunda ni una estrategia de segmentación",
+          "3 (Conozco pero no Segmento): Conozco mi público objetivo, pero no lo segmento de manera efectiva",
+          "4 (Conozco y Segmento pero no Funciona): Conozco y segmento mi público objetivo, pero no estoy satisfecho con los resultados obtenidos",
+          "5 (Conozco, Segmento y Funciona): Conozco y segmento mi público objetivo de manera efectiva, y estoy satisfecho con los resultados obtenidos"
+        ]
+      }
+    ]
+  },
+  {
+    "fase": "E",
+    "data": [
+      {
+        "p": "1. ¿Tienes un plan estratégico claro para los próximos 3-5 años?",
+        "r": [
+          "1 (No lo Tengo): No tengo un plan estratégico para los próximos 3-5 años",
+          "2 (Lo Tengo pero no Está Claro): Tengo un plan estratégico, pero no está claramente definido ni estructurado",
+          "3 (Lo Tengo): Tengo un plan estratégico claro para los próximos 3-5 años, pero aún no lo he implementado plenamente",
+          "4 (Lo Tengo y lo Aplico pero no Funciona): Tengo un plan estratégico claro y lo estoy aplicando, pero no estoy obteniendo los resultados deseados",
+          "5 (Lo Tengo, lo Aplico y Funciona Bien): Tengo un plan estratégico claro, lo aplico y está funcionando bien, logrando los resultados esperados"
+        ]
+      },
+      {
+        "p": "2. ¿Con qué frecuencia alineas tus recursos y operaciones con tus objetivos estratégicos?",
+        "r": [
+          "1 (Nunca): Nunca alineo mis recursos y operaciones con los objetivos estratégicos",
+          "2 (Pocas Veces): Rara vez alineo mis recursos y operaciones con los objetivos estratégicos, y no tengo un enfoque consistente",
+          "3 (Algunas Veces): Alineo mis recursos y operaciones con los objetivos estratégicos de manera ocasional, pero no siempre de manera sistemática",
+          "4 (Bastantes Veces): Alineo mis recursos y operaciones con los objetivos estratégicos con regularidad, siguiendo un plan establecido",
+          "5 (Muchas Veces): Alineo mis recursos y operaciones con los objetivos estratégicos de manera frecuente y sistemática, asegurando que todas las actividades estén en línea con los objetivos a largo plazo"
+        ]
+      },
+      {
+        "p": "3. Con qué frecuencia revisas y ajustas tu estrategia?",
+        "r": [
+          "1 (Nunca): Nunca reviso ni ajusto mi estrategia",
+          "2 (Anualmente): Reviso y ajusto mi estrategia una vez al año",
+          "3 (Semestralmente): Reviso y ajusto mi estrategia dos veces al año",
+          "4 (Trimestralmente): Reviso y ajusto mi estrategia cada tres meses",
+          "5 (Continuamente): Reviso y ajusto mi estrategia de manera continua, realizando ajustes según sea necesario"
+        ]
+      },
+      {
+        "p": "4. ¿Cómo calificarías la adaptabilidad de tu negocio a los cambios del mercado?",
+        "r": [
+          "1 (Muy Poco): Mi negocio es muy poco adaptable a los cambios del mercado, con dificultades significativas para ajustarse a nuevas condiciones",
+          "2 (Poco): Mi negocio es poco adaptable a los cambios del mercado, con algunas dificultades para ajustar las estrategias y operaciones",
+          "3 (Medio): Mi negocio es medianamente adaptable a los cambios del mercado, con cierta capacidad para ajustarse pero con algunas limitaciones",
+          "4 (Alto): Mi negocio es bastante adaptable a los cambios del mercado, con una buena capacidad para ajustar estrategias y operaciones según sea necesario",
+          "5 (Muy Alto): Mi negocio es muy adaptable a los cambios del mercado, con una alta capacidad para ajustar rápidamente las estrategias y operaciones para aprovechar nuevas oportunidades o enfrentar desafíos"
+        ]
+      },
+      {
+        "p": "5. ¿Con qué frecuencia involucras a tu equipo en el desarrollo y ejecución de la estrategia?",
+        "r": [
+          "1 (Nunca): Nunca involucro a mi equipo en el desarrollo ni en la ejecución de la estrategia",
+          "2 (Pocas Veces): Involucro a mi equipo en el desarrollo y ejecución de la estrategia en pocas ocasiones, sin una participación regular",
+          "3 (Algunas Veces): Involucro a mi equipo en el desarrollo y ejecución de la estrategia de manera ocasional, pero no de manera sistemática",
+          "4 (Bastantes Veces): Involucro a mi equipo en el desarrollo y ejecución de la estrategia con regularidad, permitiendo una participación significativa",
+          "5 (Muchas Veces): Involucro a mi equipo en el desarrollo y ejecución de la estrategia de manera frecuente, asegurando una participación activa y continua"
+        ]
+      },
+      {
+        "p": "6. ¿Conoces cuáles son tus principales objetivos estratégicos?",
+        "r": [
+          "1 (No Conozco): No conozco cuáles son mis principales objetivos estratégicos",
+          "2 (Conozco Poco): Conozco algunos de mis objetivos estratégicos, pero no tengo una comprensión completa ni clara",
+          "3 (Conozco pero no Aplico): Conozco mis principales objetivos estratégicos, pero no los aplico de manera efectiva",
+          "4 (Conozco, Aplico pero no Funcionan): Conozco y aplico mis objetivos estratégicos, pero no estoy satisfecho con los resultados obtenidos",
+          "5 (Conozco, Aplico y Funcionan): Conozco, aplico y obtengo buenos resultados con mis principales objetivos estratégicos"
+        ]
+      },
+      {
+        "p": "7. ¿Conoces y aplicas metodologías de planificación estratégicas utilizas?",
+        "r": [
+          "1 (No Conozco): No conozco ninguna metodología de planificación estratégica",
+          "2 (Conozco Poco): Conozco algunas metodologías básicas de planificación estratégica, pero no tengo una comprensión profunda ni experiencia en su aplicación",
+          "3 (Conozco pero no Aplico): Conozco metodologías de planificación estratégica, pero no las aplico de manera efectiva en mi negocio",
+          "4 (Conozco, Aplico pero no Funcionan): Conozco y aplico metodologías de planificación estratégica, pero no estoy satisfecho con los resultados obtenidos",
+          "5 (Conozco, Aplico y Funcionan Bien): Conozco y aplico metodologías de planificación estratégica de manera efectiva, y estoy satisfecho con los resultados obtenidos"
+        ]
+      }
+    ]
+  }
+]
